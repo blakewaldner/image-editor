@@ -1,0 +1,66 @@
+
+=== PURPOSE OF "ImageFunction" CLASSES ===
+
+This abstract class represents a command that can be inputted in the controller.
+There is a separate class that extends ImageFunction for each command, "save" has SaveFunction,
+"brighten" has BrightenFunction, "load" has LoadFunction, etc.
+
+=== PURPOSE OF "Image" CLASS ===
+
+Represents an image. Stores a list of current pixels of image and name of image for usage
+in commands.
+
+=== PURPOSE OF "Pixel" CLASS ===
+
+Represents an pixel of an image that holds RGB values. Contains methods like brighten,
+component, etc that changes the pixel according to the user inputted commands.
+
+=== PURPOSE OF "ImageController" INTERFACE ===
+
+Interface for the controller, only has "startProcess()" method.
+
+=== PURPOSE OF "ImageControllerImpl" CLASS ===
+
+Implements ImageController interface, handles processing of commands from user inputs.
+
+=== PURPOSE OF "ImageMain" CLASS ===
+
+Creates and starts a controller process. Also handles command line argument for if the user
+wants to use a script.txt file for commands.
+
+=== PURPOSE OF "ImageModelInterface" INTERFACE ===
+
+Interface for a model of images. Contains methods for saving image to the model,
+getting the current image list, and getting an image by a given name.
+
+=== PURPOSE OF "ImageModel" CLASS ===
+
+Class for a model of PPM images. Holds a list of the current images created and allows
+for access to images by name and saving to a given name.
+
+=== PURPOSE OF "ImageViewInterface" INTERFACE ===
+
+Interface for a view of displaying an image. Holds methods like renderMessage().
+
+=== PURPOSE OF "ImageView" CLASS ===
+
+Implements ImageViewInterface. Displays text responses from the command like
+"Recognized 'save' command" and "Invalid arguments" to the given appendable.
+
+=== PURPOSE OF "ImageUtil" CLASS ===
+
+Handles creation and saving of PPM files. Has methods like writePPM() that create a PPM file
+in the project and readPPM() that read a PPM file in order to create an Image class from it.
+
+=== HOW TO RUN THE "script" FILE WITH DEMO COMMANDS ====
+
+A list of valid commands for creating an image has been included in the res
+folder named "res/script". In order to run this file in the code, simply provide the
+file path for the file as a command line argument. Since script is in the res folder,
+inputting just "res/script" as a command line argument works fine and should input the commands
+in the script.txt file.
+
+=== SOURCE OF IMAGE ===
+
+"dog.ppm" Image sourced from:
+https://people.com/pets/new-app-nose-id-finds-lost-dog-with-nose-print/

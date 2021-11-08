@@ -1,0 +1,7 @@
+load res/dog.ppm dog
+brighten 50 dog dog-bright
+horizontal-flip dog-bright dog-flipped
+vertical-flip dog-flipped dog-flipped
+darken 50 dog-flipped dog-darker
+luma-component dog-darker dog-darker
+save res/dog-new.ppm dog-darker
