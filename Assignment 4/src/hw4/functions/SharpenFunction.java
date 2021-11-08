@@ -7,6 +7,8 @@ import hw4.ImageModel;
 
 public class SharpenFunction extends AKernel {
 
+  //Test comment
+
   public SharpenFunction() {
     super("sharpen", new double[][]{
             new double[]{-0.125, -0.125, -0.125, -0.125, -0.125},
