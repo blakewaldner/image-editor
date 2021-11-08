@@ -18,7 +18,16 @@ import javax.imageio.ImageIO;
 public class ImageUtil {
 
   public static Image readFile(String fileName, String imageName) {
-    if(fileName.endsWith(".png") || fileName.endsWith(".jpg")) {
+
+    int dotIndex = fileName.lastIndexOf(".");
+    if(dotIndex == -1 || dotIndex == fileName.length()-1) {
+      throw new IllegalArgumentException("Invalid file ext for file path");
+    }
+    String ext = fileName.substring(dotIndex+1);
+
+    if(ext.equalsIgnoreCase("ppm")) {
+      return readPPM(fileName, imageName);
+    } else {
       BufferedImage img;
       try {
         img = ImageIO.read(new File(fileName));
@@ -35,11 +44,6 @@ public class ImageUtil {
       }
       //TODO: need max value for pngs/jpgs?
       return new Image(imgList, imageName);
-    } else if (fileName.endsWith(".ppm")) {
-      return readPPM(fileName, imageName);
-    }
-    else {
-      throw new IllegalArgumentException("Invalid file path, no or non-supported file extension");
     }
   }
 
@@ -102,31 +106,29 @@ public class ImageUtil {
    * @throws IOException if filepath or image is invalid
    */
   public static void writeImage(String fileName, Image image) throws IOException {
-    if (fileName.endsWith(".jpg") || fileName.endsWith(".png")) {
-      int width = image.getWidth();
-      int height = image.getHeight();
-      String ext = fileName.substring(fileName.length()-3);
+    int width = image.getWidth();
+    int height = image.getHeight();
+    int dotIndex = fileName.lastIndexOf(".");
+    if(dotIndex == -1 || dotIndex == fileName.length()-1) {
+      throw new IllegalArgumentException("Invalid file ext for file path");
+    }
+    String ext = fileName.substring(dotIndex+1);
+    if (ext.equalsIgnoreCase("ppm")) {
+      writePPM(fileName, image, width, height);
+    }
+    else {
+      File file = new File(fileName);
       BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
       for(int i = 0; i < width-1; i++) {
         for (int j = 0; j < height-1; j++) {
           img.setRGB(i,j,image.getPixel(j,i).getRGB());
         }
       }
-      File file = new File(fileName);
       ImageIO.write(img, ext, file);
-    }
-    else if (fileName.endsWith(".ppm")) {
-      writePPM(fileName, image);
-    }
-    else {
-      throw new IllegalArgumentException("Invalid file path, when saving, no file ext " +
-              "or non-supported file ext");
     }
   }
 
-  public static void writePPM(String fileName, Image image) throws IOException {
-    int width = image.getWidth();
-    int height = image.getHeight();
+  public static void writePPM(String fileName, Image image, int width, int height) throws IOException {
     int max = image.getMax();
     Pixel[][] img = image.getImg();
     FileOutputStream file = new FileOutputStream(fileName);

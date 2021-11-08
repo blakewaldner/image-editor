@@ -18,6 +18,7 @@ import hw4.functions.LoadFunction;
 import hw4.functions.LumaComponentFunction;
 import hw4.functions.RedComponentFunction;
 import hw4.functions.SaveFunction;
+import hw4.functions.SepiaFunction;
 import hw4.functions.SharpenFunction;
 import hw4.functions.ValueComponentFunction;
 import hw4.functions.VerticalFlipFunction;
@@ -95,6 +96,7 @@ public class ImageControllerImpl implements ImageController {
       functions.add(new BlurFunction());
       functions.add(new SharpenFunction());
       functions.add(new GreyScaleFunction());
+      functions.add(new SepiaFunction());
       boolean didCommand = false;
       //checks if user's command is valid command
       for (int i = 0; i < functions.size(); i++) {
@@ -107,11 +109,11 @@ public class ImageControllerImpl implements ImageController {
                     functions.get(i).command + " command\n");
             //valid command, but invalid arguments for command
           } catch (IllegalArgumentException e1) {
-            view.renderMessage("Invalid Arguments\n");
+            view.renderMessage("Invalid Arguments: " + e1.getMessage() + "\n");
           }
           //valid command, but invalid filepath as argument
           catch (FileNotFoundException e2) {
-            view.renderMessage("File not found at location\n");
+            view.renderMessage(e2.getMessage() + "\n");
           }
         }
         //invalid command, couldn't find
