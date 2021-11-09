@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
+import hw4.controller.functions.ImageFunction;
 import hw4.controller.functions.SharpenFunction;
 import hw4.model.Image;
 import hw4.model.ImageModel;
@@ -42,7 +43,7 @@ public class BlurFunctionTest {
   @Test
   public void doFunction() throws IOException {
     initializer();
-    BlurFunction blur = new BlurFunction();
+    ImageFunction blur = new BlurFunction();
     blur.doFunction(imageModel, new Scanner(read));
 
     img2[0][0] = new Pixel(1,1,1);
@@ -63,7 +64,7 @@ public class BlurFunctionTest {
   @Test (expected = IllegalArgumentException.class)
   public void testInvalidName() throws IOException {
     initializer();
-    BlurFunction blur = new BlurFunction();
+    ImageFunction blur = new BlurFunction();
     read = new StringReader("testInvalid test");
     blur.doFunction(imageModel, new Scanner(read));
   }
@@ -71,7 +72,7 @@ public class BlurFunctionTest {
   @Test (expected = IllegalArgumentException.class)
   public void testInvalidImage() throws IOException {
     initializer();
-    BlurFunction blur = new BlurFunction();
+    ImageFunction blur = new BlurFunction();
     read = new StringReader("thisname thisname");
     scan = new Scanner(read);
     Image image = new Image(null, "thisname");
