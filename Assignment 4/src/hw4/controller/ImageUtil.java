@@ -121,8 +121,8 @@ public class ImageUtil {
     else {
       File file = new File(fileName);
       BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-      for(int i = 0; i < width-1; i++) {
-        for (int j = 0; j < height-1; j++) {
+      for(int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
           img.setRGB(i,j,image.getPixel(j,i).getRGB());
         }
       }

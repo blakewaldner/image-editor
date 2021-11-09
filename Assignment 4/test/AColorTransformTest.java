@@ -5,7 +5,6 @@ import java.io.StringReader;
 import java.util.Scanner;
 
 import hw4.controller.functions.AColorTransform;
-import hw4.controller.functions.SepiaFunction;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;

@@ -1,16 +1,5 @@
-import org.junit.Test;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.Scanner;
-
 import hw4.controller.functions.GreyScaleFunction;
-import hw4.controller.functions.SepiaFunction;
-import hw4.model.Image;
-import hw4.model.ImageModel;
 import hw4.model.Pixel;
-
-import static org.junit.Assert.assertEquals;
 
 public class GreyScaleFunctionTest extends AColorTransformTest {
 
