@@ -17,9 +17,10 @@ public class SharpenFunctionTest {
   Image image;
   Image image1;
   Scanner scan;
+  Pixel [][] img2;
 
   private void initializer() {
-     read = new StringReader("test testafter");
+     read = new StringReader("test test");
      imageModel = new ImageModel();
      scan = new Scanner(read);
 
@@ -35,37 +36,49 @@ public class SharpenFunctionTest {
 
      image = new Image(img, "test");
 
-    Pixel e = new Pixel(4, 5, 6);
-    Pixel f = new Pixel(3, 3, 3);
-    Pixel g = new Pixel(6, 6, 7);
-    Pixel h = new Pixel(8, 8, 8);
+    img2 = new Pixel[5][5];
 
-    Pixel[][] img2 = new Pixel[2][2];
-
-    img2[0][0] = e;
-    img2[0][1] = f;
-    img2[1][1] = g;
-    img2[1][0] = h;
-
-     image1 = new Image(img2, "testtwo");
 
     imageModel.save(image);
-    imageModel.save(image1);
   }
 
   @Test
   public void testDoFunction() throws IOException {
-    initializer();
-  SharpenFunction sharpen = new SharpenFunction();
-  sharpen.doFunction(imageModel, new Scanner(read));
-  for(int i =0; i < 5; i ++){
-    for(int j = 0; j < 5; j ++){
-      imageModel.getImageByName("testafter").getPixel(i,j).getRed() + " "
-      imageModel.getImageByName("testafter").getPixel(i,j).getGreen() + " "
-      imageModel.getImageByName("testafter").getPixel(i,j).getBlue());
 
-    }
-  }
+    initializer();
+    SharpenFunction sharpen = new SharpenFunction();
+    sharpen.doFunction(imageModel, new Scanner(read));
+
+
+    img2[0][0] = new Pixel(0,0,0);
+    img2[0][1] = new Pixel(0,1,6);
+    img2[0][2] = new Pixel(0,11,18);
+    img2[0][3] = new Pixel(0,37,42);
+    img2[0][4] = new Pixel(0,35,39);
+    img2[1][0] = new Pixel(6,0,0);
+    img2[1][1] = new Pixel(9,4,9);
+    img2[1][2] = new Pixel(3,18,26);
+    img2[1][3] = new Pixel(9,54,59);
+    img2[1][4] = new Pixel(6,47,51);
+    img2[2][0] = new Pixel(18,0,0);
+    img2[2][1] = new Pixel(26,2,3);
+    img2[2][2] = new Pixel(16,12,16);
+    img2[2][3] = new Pixel(26,46,49);
+    img2[2][4] = new Pixel(18,40,42);
+    img2[3][0] = new Pixel(42,1,0);
+    img2[3][1] = new Pixel(59,16,9);
+    img2[3][2] = new Pixel(49,31,26);
+    img2[3][3] = new Pixel(59,64,59);
+    img2[3][4] = new Pixel(42,55,51);
+    img2[4][0] = new Pixel(39,2,0);
+    img2[4][1] = new Pixel(51,13,6);
+    img2[4][2] = new Pixel(42,25,18);
+    img2[4][3] = new Pixel(51,48,42);
+    img2[4][4] = new Pixel(39,44,39);
+
+    image1 = new Image(img2, "test");
+
+    assertEquals(image1, imageModel.getImageByName("test"));
 
   }
 }

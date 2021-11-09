@@ -171,6 +171,7 @@ public class Image {
    * @param obj is the Object to be compared.
    * @returns a boolean.
    */
+
   @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof Image)) {
@@ -187,7 +188,7 @@ public class Image {
     }
 
     return this.getWidth() == that.getWidth() && that.getHeight() == this.getHeight() && state
-            && this.getMax() == that.getMax() && this.getName() == that.getName();
+           && this.getMax() == that.getMax() && this.getName().equals(that.getName());
   }
 
   @Override
