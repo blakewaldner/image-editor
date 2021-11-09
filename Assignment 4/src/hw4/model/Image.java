@@ -30,6 +30,9 @@ public class Image {
    * @throws IllegalArgumentException when any of the arguments are null.
    */
   public Image(Pixel[][] img, String name, int max) throws IllegalArgumentException {
+    if(img == null) {
+      throw new IllegalArgumentException("Invalid img");
+    }
     for (int i = 0; i < img.length; i++) {
       for (int j = 0; j < img[i].length; j++) {
         if (img[i][j] == null) {
