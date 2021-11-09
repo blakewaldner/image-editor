@@ -2,7 +2,8 @@ package hw4;
 
 /**
  * Represents an image. It contains a nested array of Pixel objects, the max color value for those
- * Pixels, and a String name.
+ * Pixels, and a String name. It contains methods for brightening an image, greyscaling an image,
+ * flipping an image, or getting various details about a specified image.
  */
 public class Image {
   private final Pixel[][] img;
@@ -232,6 +233,12 @@ public class Image {
     return this.name;
   }
 
+  /**
+   * This functions returns a copy of a specified pixel at a given row/col.
+   * @param row row of pixel
+   * @param col col of pixel
+   * @return copy of pixel at row/col
+   */
   public Pixel getPixel(int row, int col){
     return new Pixel(img[row][col].getRed(),img[row][col].getGreen(),img[row][col].getBlue());
   }
