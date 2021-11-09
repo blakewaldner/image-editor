@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import hw4.controller.ImageController;
 import hw4.controller.ImageControllerImpl;
+import hw4.controller.functions.BlurFunction;
+import hw4.controller.functions.GreyScaleFunction;
+import hw4.controller.functions.SepiaFunction;
+import hw4.controller.functions.SharpenFunction;
 import hw4.model.ImageModel;
 import hw4.controller.functions.BlueComponentFunction;
 import hw4.controller.functions.BrightenFunction;
@@ -45,6 +49,11 @@ public class ImageFunctionTest {
     validCommands.add("red-component test test-red");
     validCommands.add("green-component test test-green");
     validCommands.add("blue-component test test-blue");
+    validCommands.add("sharpen test test-sharpen");
+    validCommands.add("blur test test-blur");
+    validCommands.add("greyscale test test-greyscale");
+    validCommands.add("sepia test test-sepia");
+
 
 
     ArrayList<ImageFunction> functions = new ArrayList();
@@ -60,6 +69,11 @@ public class ImageFunctionTest {
     functions.add(new RedComponentFunction());
     functions.add(new GreenComponentFunction());
     functions.add(new BlueComponentFunction());
+    functions.add(new SharpenFunction());
+    functions.add(new BlurFunction());
+    functions.add(new SepiaFunction());
+    functions.add(new GreyScaleFunction());
+
 
     for (int x = 0; x < functions.size(); x++) {
       Readable read = new StringReader("load res/testing.ppm test\n" + validCommands.get(x));
@@ -125,6 +139,11 @@ public class ImageFunctionTest {
     validCommands.add("red-component imagedoesntexist dog");
     validCommands.add("green-component imagedoesntexist dog");
     validCommands.add("blue-component imagedoesntexist dog");
+    validCommands.add("sharpen test test-sharpen");
+    validCommands.add("blur test test-blur");
+    validCommands.add("greyscale test test-greyscale");
+    validCommands.add("sepia test test-sepia");
+
 
 
     ArrayList<ImageFunction> functions = new ArrayList();
@@ -138,6 +157,10 @@ public class ImageFunctionTest {
     functions.add(new RedComponentFunction());
     functions.add(new GreenComponentFunction());
     functions.add(new BlueComponentFunction());
+    functions.add(new SharpenFunction());
+    functions.add(new BlurFunction());
+    functions.add(new SepiaFunction());
+    functions.add(new GreyScaleFunction());
 
     for (int x = 0; x < functions.size(); x++) {
       Readable read = new StringReader(validCommands.get(x));
