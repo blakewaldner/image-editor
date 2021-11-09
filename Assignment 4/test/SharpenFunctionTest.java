@@ -44,12 +44,6 @@ public class SharpenFunctionTest {
 
   @Test
   public void testDoFunction() throws IOException {
-
-    initializer();
-    SharpenFunction sharpen = new SharpenFunction();
-    sharpen.doFunction(imageModel, new Scanner(read));
-
-
     img2[0][0] = new Pixel(0,0,0);
     img2[0][1] = new Pixel(0,1,6);
     img2[0][2] = new Pixel(0,11,18);
