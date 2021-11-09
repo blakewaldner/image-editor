@@ -1,9 +1,9 @@
-package hw4.functions;
+package hw4.controller.functions;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.ImageModel;
+import hw4.model.ImageModel;
 
 /**
  * Abstract class for a command that can be run by the program

@@ -1,27 +1,29 @@
-package hw4;
+package hw4.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import hw4.functions.BlueComponentFunction;
-import hw4.functions.BlurFunction;
-import hw4.functions.BrightenFunction;
-import hw4.functions.DarkenFunction;
-import hw4.functions.GreenComponentFunction;
-import hw4.functions.GreyScaleFunction;
-import hw4.functions.HorizontalFlipFunction;
-import hw4.functions.ImageFunction;
-import hw4.functions.IntensityComponentFunction;
-import hw4.functions.LoadFunction;
-import hw4.functions.LumaComponentFunction;
-import hw4.functions.RedComponentFunction;
-import hw4.functions.SaveFunction;
-import hw4.functions.SepiaFunction;
-import hw4.functions.SharpenFunction;
-import hw4.functions.ValueComponentFunction;
-import hw4.functions.VerticalFlipFunction;
+import hw4.view.ImageView;
+import hw4.controller.functions.BlueComponentFunction;
+import hw4.controller.functions.BlurFunction;
+import hw4.controller.functions.BrightenFunction;
+import hw4.controller.functions.DarkenFunction;
+import hw4.controller.functions.GreenComponentFunction;
+import hw4.controller.functions.GreyScaleFunction;
+import hw4.controller.functions.HorizontalFlipFunction;
+import hw4.controller.functions.ImageFunction;
+import hw4.controller.functions.IntensityComponentFunction;
+import hw4.controller.functions.LoadFunction;
+import hw4.controller.functions.LumaComponentFunction;
+import hw4.controller.functions.RedComponentFunction;
+import hw4.controller.functions.SaveFunction;
+import hw4.controller.functions.SepiaFunction;
+import hw4.controller.functions.SharpenFunction;
+import hw4.controller.functions.ValueComponentFunction;
+import hw4.controller.functions.VerticalFlipFunction;
+import hw4.model.ImageModel;
 
 /**
  * ImageControllerImpl is responsible for taking in input and deciding what to execute

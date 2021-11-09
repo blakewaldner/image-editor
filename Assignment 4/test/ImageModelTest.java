@@ -2,10 +2,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import hw4.Image;
-import hw4.ImageModel;
-import hw4.ImageModelInterface;
-import hw4.Pixel;
+import hw4.model.Image;
+import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
+import hw4.model.Pixel;
 
 import static org.junit.Assert.assertEquals;
 

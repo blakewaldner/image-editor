@@ -1,4 +1,4 @@
-package hw4;
+package hw4.model;
 
 /**
  * Represents a pixel in an image. It contains the integer values for red, green, and blue.

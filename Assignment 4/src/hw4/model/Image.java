@@ -1,4 +1,4 @@
-package hw4;
+package hw4.model;
 
 /**
  * Represents an image. It contains a nested array of Pixel objects, the max color value for those

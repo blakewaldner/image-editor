@@ -1,10 +1,10 @@
-package hw4.functions;
+package hw4.controller.functions;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.ImageModel;
-import hw4.ImageUtil;
+import hw4.model.ImageModel;
+import hw4.controller.ImageUtil;
 
 /**
  * This class represents the command for "load". It loads

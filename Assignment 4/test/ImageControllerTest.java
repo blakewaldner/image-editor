@@ -2,9 +2,9 @@ import org.junit.Test;
 
 import java.io.InputStreamReader;
 
-import hw4.ImageController;
-import hw4.ImageControllerImpl;
-import hw4.ImageModel;
+import hw4.controller.ImageController;
+import hw4.controller.ImageControllerImpl;
+import hw4.model.ImageModel;
 
 import static org.junit.Assert.assertFalse;
 

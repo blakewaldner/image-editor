@@ -1,29 +1,28 @@
-package hw4.functions;
+package hw4.controller.functions;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.ImageModel;
+import hw4.model.ImageModel;
 
 /**
- * This class represents the command for "darken". It darkens a
+ * This class represents the command for "brighten". It brighrens a
  * given image by a given amount to a new given image name. If same image name,
  * overrides image.
  */
-public class DarkenFunction extends ImageFunction {
-
+public class BrightenFunction extends ImageFunction {
 
   /**
-   * Constructor for creating darken function object.
+   * Constructor for creating brighten function object.
    * Takes no arguments, command for activating function is hard coded in
    * and set to abstract parent function.
    */
-  public DarkenFunction() {
-    super("darken");
+  public BrightenFunction() {
+    super("brighten");
   }
 
   /**
-   * Performs the darken function on a given image according to inputs
+   * Performs the brighten function on a given image according to inputs
    * from given scanner.
    *
    * @param model   list of images currently operating on
@@ -39,7 +38,6 @@ public class DarkenFunction extends ImageFunction {
       throw new IllegalArgumentException("Second argument must be a numeric for " +
               "brighten/darken");
     }
-    increment *= -1;
     String imageName = scanner.next();//args[2];
     String destImageName = scanner.next();//args[3];
     model.save(model.getImageByName(imageName).brighten(increment, destImageName));

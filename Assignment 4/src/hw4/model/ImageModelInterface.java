@@ -1,6 +1,8 @@
-package hw4;
+package hw4.model;
 
 import java.util.ArrayList;
+
+import hw4.model.Image;
 
 /**
  * This class represents the functionality for ImageModels.

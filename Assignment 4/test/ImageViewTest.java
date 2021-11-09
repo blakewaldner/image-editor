@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import hw4.ImageView;
+import hw4.view.ImageView;
 
 import static org.junit.Assert.assertEquals;
 

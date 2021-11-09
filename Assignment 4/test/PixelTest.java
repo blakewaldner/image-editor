@@ -2,7 +2,7 @@
 
 import org.junit.Test;
 
-import hw4.Pixel;
+import hw4.model.Pixel;
 
 import static org.junit.Assert.assertEquals;
 

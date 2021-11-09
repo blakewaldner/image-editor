@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
-import hw4.Image;
-import hw4.ImageModel;
-import hw4.Pixel;
-import hw4.functions.AColorTransform;
-import hw4.functions.SepiaFunction;
+import hw4.model.Image;
+import hw4.model.ImageModel;
+import hw4.model.Pixel;
+import hw4.controller.functions.SepiaFunction;
 
 public class ColorTransformTest {
 

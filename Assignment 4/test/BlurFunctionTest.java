@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
-import hw4.Image;
-import hw4.ImageModel;
-import hw4.Pixel;
-import hw4.functions.BlurFunction;
-import hw4.functions.SharpenFunction;
+import hw4.model.Image;
+import hw4.model.ImageModel;
+import hw4.model.Pixel;
+import hw4.controller.functions.BlurFunction;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +38,6 @@ public class BlurFunctionTest {
 
     imageModel.save(image);
   }
-
   @Test
   public void doFunction() throws IOException {
     initializer();

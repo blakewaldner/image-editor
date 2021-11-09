@@ -1,4 +1,4 @@
-package hw4;
+package hw4.model;
 
 import java.util.ArrayList;
 
