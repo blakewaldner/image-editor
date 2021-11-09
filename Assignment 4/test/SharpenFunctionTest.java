@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
+import hw4.controller.functions.BlurFunction;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
@@ -44,6 +45,10 @@ public class SharpenFunctionTest {
 
   @Test
   public void testDoFunction() throws IOException {
+    initializer();
+    BlurFunction blur = new BlurFunction();
+    blur.doFunction(imageModel, new Scanner(read));
+
     img2[0][0] = new Pixel(0,0,0);
     img2[0][1] = new Pixel(0,1,6);
     img2[0][2] = new Pixel(0,11,18);
