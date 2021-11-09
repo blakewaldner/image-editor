@@ -67,7 +67,7 @@ public class ImageFunctionTest {
       ImageController controller = new ImageControllerImpl(read, append);
       controller.startProcess();
       assertTrue(append.toString().endsWith("Successfully recognized "
-              + functions.get(x).command + " command\n"));
+              + functions.get(x).getCommand() + " command\n"));
     }
 
   }

@@ -11,7 +11,7 @@ import hw4.model.ImageModel;
  */
 public abstract class ImageFunction {
 
-  public String command;
+  protected String command;
 
   /**
    * Constructor for creating a valid command that the controller
@@ -36,4 +36,11 @@ public abstract class ImageFunction {
    */
   public abstract void doFunction(ImageModel model, Scanner s) throws IOException;
 
+  /**
+   * This function returns the command string.
+   * @returns a String.
+   */
+  public String getCommand(){
+    return command;
+  }
 }

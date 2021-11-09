@@ -1,6 +1,7 @@
 package hw4.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a model for the image project. The model is responsible for the methods
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  */
 public class ImageModel implements ImageModelInterface {
   //Arraylist of images stored in the model. It intially has zero stored Images.
-  private final ArrayList<Image> imgList;
+  private final List<Image> imgList;
 
   /**
    * Constructor for ImageModel. It initially has zero stored Images.

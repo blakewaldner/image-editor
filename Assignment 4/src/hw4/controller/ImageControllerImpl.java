@@ -102,13 +102,13 @@ public class ImageControllerImpl implements ImageController {
       boolean didCommand = false;
       //checks if user's command is valid command
       for (int i = 0; i < functions.size(); i++) {
-        if (functions.get(i).command.equals(firstArg)) {
+        if (functions.get(i).getCommand().equals(firstArg)) {
           try {
             //does command if valid
             didCommand = true;
             functions.get(i).doFunction(model, scanner);
             view.renderMessage("Successfully recognized " +
-                    functions.get(i).command + " command\n");
+                    functions.get(i).getCommand() + " command\n");
             //valid command, but invalid arguments for command
           } catch (IllegalArgumentException e1) {
             view.renderMessage("Invalid Arguments: " + e1.getMessage() + "\n");
