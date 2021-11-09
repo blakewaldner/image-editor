@@ -20,6 +20,9 @@ public abstract class ImageFunction {
    * @param command command prompt string for controller to recognize command
    */
   public ImageFunction(String command) {
+    if(command == null){
+      throw new IllegalArgumentException("Null command");
+    }
     this.command = command;
   }
 

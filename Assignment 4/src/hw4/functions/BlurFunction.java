@@ -5,8 +5,14 @@ import java.util.Scanner;
 
 import hw4.ImageModel;
 
+/**
+ * This class represents a kernel that blurs an image.
+ */
 public class BlurFunction extends AKernel {
 
+  /**
+   * Constructor for the class. The kernel's values are pre-defined.
+   */
   public BlurFunction() {
     super("blur", new double[][]{
             new double[]{0.0625, 0.125, 0.0625},

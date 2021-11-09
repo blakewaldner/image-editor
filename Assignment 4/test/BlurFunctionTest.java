@@ -39,6 +39,7 @@ public class BlurFunctionTest {
 
     imageModel.save(image);
   }
+
   @Test
   public void doFunction() throws IOException {
     initializer();
