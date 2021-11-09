@@ -5,8 +5,19 @@ import java.util.Scanner;
 
 import hw4.ImageModel;
 
+/**
+ * This class represents the command for applying the "sepia" effect
+ * using a color transformation object an an image.
+ * It gives an image a reddish-brownish tone to a new given image name.
+ * If same image name, the image is overridden with the new image.
+ */
 public class SepiaFunction extends AColorTransform {
 
+  /**
+   * Constructor for creating sepia function object.
+   * Takes no arguments, command for activating function is hard coded in
+   * and set to abstract parent function.
+   */
   public SepiaFunction() {
     super("sepia", new double[][]{
             new double[]{0.393, 0.769, 0.189},
