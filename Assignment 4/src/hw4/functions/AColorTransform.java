@@ -7,14 +7,19 @@ import hw4.Image;
 import hw4.ImageModel;
 import hw4.Pixel;
 
+/**
+ * This class contains functionality useful for color transformations on an Image.
+ * It is an abstract class that is intended to be extended to create function objects.
+ */
 public abstract class AColorTransform extends ImageFunction{
-  double [][] colorChange;
+  protected final double [][] colorChange;
 
   /**
    * Constructor for creating a valid command that the controller
    * will recognize.
    *
    * @param command command prompt string for controller to recognize command
+   * @param colorChange this array is applied to the image for color transformations.
    */
   public AColorTransform(String command, double [] [] colorChange) {
     super(command);

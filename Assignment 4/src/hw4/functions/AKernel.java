@@ -4,22 +4,30 @@ import hw4.Image;
 import hw4.ImageModel;
 import hw4.Pixel;
 
+/**
+ * This class represents a kernel that is used to filter images. It is an abstract class
+ * that is intended to be extended to create function objects.
+ */
 public abstract class AKernel extends ImageFunction {
-  protected double[][] kArray;
+  protected final double[][] kArray;
 
   /**
    * Constructor for creating a valid command that the controller
    * will recognize.
    *
    * @param command command prompt string for controller to recognize command
+   * @param kArray 2D array that represents a kernel.
    */
   public AKernel(String command, double [][] kArray) {
     super(command);
+    if(kArray.length%2 == 0 || kArray[0].length%2 == 0 ){
+      throw new IllegalArgumentException("Invalid Kernel Array");
+    }
     this.kArray = kArray;
   }
 
 
-  protected Image applyKernel(Image image, String imageName){ // need to talk about how compenent is implemented
+  protected Image applyKernel(Image image, String imageName){
     Pixel [][] a = new Pixel[image.getHeight()][image.getWidth()];
     for(int i = 0; i < image.getHeight(); i ++){
       for(int j = 0; j < image.getWidth(); j ++){
