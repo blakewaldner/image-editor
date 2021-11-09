@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.util.Scanner;
 
 import hw4.controller.functions.BlurFunction;
+import hw4.controller.functions.SharpenFunction;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
@@ -33,8 +34,6 @@ public class SharpenFunctionTest {
       }
     }
 
-
-
      image = new Image(img, "test");
 
     img2 = new Pixel[5][5];
@@ -46,8 +45,8 @@ public class SharpenFunctionTest {
   @Test
   public void testDoFunction() throws IOException {
     initializer();
-    BlurFunction blur = new BlurFunction();
-    blur.doFunction(imageModel, new Scanner(read));
+    SharpenFunction sharpen = new SharpenFunction();
+    sharpen.doFunction(imageModel, new Scanner(read));
 
     img2[0][0] = new Pixel(0,0,0);
     img2[0][1] = new Pixel(0,1,6);
@@ -79,5 +78,24 @@ public class SharpenFunctionTest {
 
     assertEquals(image1, imageModel.getImageByName("test"));
 
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testInvalidName() throws IOException {
+    initializer();
+    SharpenFunction sharpen = new SharpenFunction();
+    read = new StringReader("testInvalid test");
+    sharpen.doFunction(imageModel, new Scanner(read));
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testInvalidImage() throws IOException {
+    initializer();
+    SharpenFunction sharpen = new SharpenFunction();
+    read = new StringReader("thisname thisname");
+    scan = new Scanner(read);
+    Image image = new Image(null, "thisname");
+    imageModel.save(image);
+    sharpen.doFunction(imageModel, scan);
   }
 }

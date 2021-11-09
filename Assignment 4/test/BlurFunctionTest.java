@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
+import hw4.controller.functions.SharpenFunction;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
@@ -57,5 +58,24 @@ public class BlurFunctionTest {
     image1 = new Image(img2, "test");
 
     assertEquals(image1, imageModel.getImageByName("test"));
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testInvalidName() throws IOException {
+    initializer();
+    BlurFunction blur = new BlurFunction();
+    read = new StringReader("testInvalid test");
+    blur.doFunction(imageModel, new Scanner(read));
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testInvalidImage() throws IOException {
+    initializer();
+    BlurFunction blur = new BlurFunction();
+    read = new StringReader("thisname thisname");
+    scan = new Scanner(read);
+    Image image = new Image(null, "thisname");
+    imageModel.save(image);
+    blur.doFunction(imageModel, scan);
   }
 }
