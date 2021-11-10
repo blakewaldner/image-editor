@@ -30,7 +30,7 @@ public class Image {
    * @throws IllegalArgumentException when any of the arguments are null.
    */
   public Image(Pixel[][] img, String name, int max) throws IllegalArgumentException {
-    if(img == null) {
+    if (img == null) {
       throw new IllegalArgumentException("Invalid img");
     }
     for (int i = 0; i < img.length; i++) {
@@ -192,7 +192,7 @@ public class Image {
     }
 
     return this.getWidth() == that.getWidth() && that.getHeight() == this.getHeight() && state
-           && this.getMax() == that.getMax() && this.getName().equals(that.getName());
+            && this.getMax() == that.getMax() && this.getName().equals(that.getName());
   }
 
   @Override
@@ -238,12 +238,16 @@ public class Image {
 
   /**
    * This functions returns a copy of a specified pixel at a given row/col.
+   *
    * @param row row of pixel
    * @param col col of pixel
    * @return copy of pixel at row/col
    */
-  public Pixel getPixel(int row, int col){
-    return new Pixel(img[row][col].getRed(),img[row][col].getGreen(),img[row][col].getBlue());
+  public Pixel getPixel(int row, int col) {
+    return new Pixel(
+            img[row][col].getRed(),
+            img[row][col].getGreen(),
+            img[row][col].getBlue());
   }
 
 }

@@ -1,0 +1,53 @@
+=== SCRIPT COMMANDS SUPPORTED ===
+
+load (image file path) (image name)
+-----
+Loads an image at a given file path to a given name. Other commands can refer to this image
+by using the name given in this command. Necessary before typing any other commands as every other
+command requires a referenced image to modify.
+
+save (image file path with extension) (image name)
+-----
+Saves an image of a given image named to given file path (must include extension) .
+
+blur (image name) (new image name)
+-----
+Blurs an image of a given name to an image with a given new name.
+Same name = overwrites image.
+
+sharpen (image name) (new image name)
+-----
+Sharpens an image of a given name to an image with a given new name.
+Same name = overwrites image.
+
+sepia (image name) (new image name)
+-----
+Applies sepia filter to an image of a given name to an image with a given new name.
+Same name = overwrites image.
+
+greyscale (image name) (new image name)
+-----
+Applies greyscale filter to an image of a given name to an image with a given new name.
+Same name = overwrites image.
+
+brighten/darken (integer amount) (image name) (new image name)
+-----
+Brighten or darkens an image by a given RGB value amount of a given name to
+an image with a given new name.
+Same name = overwrites image.
+
+horizontal-flip/vertical-flip (image name) (new image name)
+-----
+Flips vertically or horizontally an image of a given name to an image with a given new name.
+Same name = overwrites image.
+
+luma-component/value-component/intensity-component (image name) (new image name)
+-----
+Applies greyscale to an image according to the luma value of rgb in pixel,
+the minimum rgb value of a pixel, or the average of the rgb values in a pixel.
+Same name = overwrites image.
+
+red-component/green-component/blue-component (image name) (new image name)
+-----
+Applies greyscale to an image according to the red, green, or blue value of a pixel.
+Same name = overwrites image.
