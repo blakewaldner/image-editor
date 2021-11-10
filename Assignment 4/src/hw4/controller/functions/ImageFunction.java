@@ -20,7 +20,7 @@ public abstract class ImageFunction {
    * @param command command prompt string for controller to recognize command
    */
   public ImageFunction(String command) {
-    if(command == null){
+    if (command == null) {
       throw new IllegalArgumentException("Null command");
     }
     this.command = command;
@@ -29,7 +29,6 @@ public abstract class ImageFunction {
   /**
    * Performs the command's function on a given image according to inputs
    * from given scanner.
-   *
    * @param model list of images currently operating on
    * @param s     inputted arguments
    * @throws IOException if invalid input from scanner is read
@@ -40,7 +39,7 @@ public abstract class ImageFunction {
    * This function returns the command string.
    * @returns a String.
    */
-  public String getCommand(){
+  public String getCommand() {
     return command;
   }
 }

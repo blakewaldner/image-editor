@@ -22,7 +22,7 @@ public abstract class AColorTransform extends ImageFunction {
     this.colorChange = colorChange;
   }
 
-  protected Image applyColorTransform(Image image, String imageName) { // need to talk about how compenent is implemented
+  protected Image applyColorTransform(Image image, String imageName) {
     Pixel[][] a = new Pixel[image.getHeight()][image.getWidth()];
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
