@@ -1,7 +1,18 @@
-load res/dog.ppm dog
+load res/dog.png dog
+blur dog dog-blur
+save res/dog-blur.png dog-blur
+sharpen dog dog-sharp
+save res/dog-sharp.png dog-sharp
+greyscale dog dog-grey
+save res/dog-grey.png dog-grey
+sepia dog dog-sepia
+save res/dog-sepia.png dog-sepia
 brighten 50 dog dog-bright
 horizontal-flip dog-bright dog-flipped
 vertical-flip dog-flipped dog-flipped
 darken 50 dog-flipped dog-darker
 luma-component dog-darker dog-darker
-save res/dog-new.ppm dog-darker
+red-component dog dog-red
+blue-component dog dog-blue
+green-component dog dog-green
+intensity-component dog dog-intensity
