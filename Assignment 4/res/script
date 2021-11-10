@@ -16,3 +16,4 @@ red-component dog dog-red
 blue-component dog dog-blue
 green-component dog dog-green
 intensity-component dog dog-intensity
+value-component dog dog-value
