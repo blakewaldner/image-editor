@@ -54,6 +54,7 @@ public abstract class AKernel extends ImageFunction {
         }
       }
     }
-    return new Pixel(sumRed, sumGreen, sumBlue).clampPixel(sumRed, sumGreen, sumBlue, image.getMax()); 
+    return new Pixel(sumRed, sumGreen, sumBlue)
+            .clampPixel(sumRed, sumGreen, sumBlue, image.getMax());
   }
 }

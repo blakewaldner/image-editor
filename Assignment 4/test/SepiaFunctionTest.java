@@ -5,7 +5,9 @@ import hw4.controller.functions.SepiaFunction;
  * Test class for SepiaFunction "sepia" script command.
  */
 public class SepiaFunctionTest extends AColorTransformTest {
-
+  /**
+   * Creates tests for valid/invalid usages of sepia function in abstract parent class.
+   */
   public SepiaFunctionTest() {
     super(new Pixel(4, 5, 6),
             new Pixel(3, 3, 3),
