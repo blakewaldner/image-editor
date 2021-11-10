@@ -23,6 +23,19 @@ public abstract class AColorTransformTest {
   Pixel[][] newPixels;
   AColorTransform func;
 
+  /**
+   * Creates tests for an AColorTransform image function.
+   *
+   * @param a    1st pixel of base 2x2 image
+   * @param b    2nd pixel of base 2x2 image
+   * @param c    3rd pixel of base 2x2 image
+   * @param d    4th pixel of base 2x2 image
+   * @param e    1st expected pixel of new 2x2 image
+   * @param f    2nd expected pixel of new 2x2 image
+   * @param g    3rd expected pixel of new 2x2 image
+   * @param h    4th expected pixel of new 2x2 image
+   * @param func acolortransform image function being tested
+   */
   public AColorTransformTest(Pixel a, Pixel b, Pixel c, Pixel d,
                              Pixel e, Pixel f, Pixel g, Pixel h, AColorTransform func) {
     img2 = new Pixel[2][2];

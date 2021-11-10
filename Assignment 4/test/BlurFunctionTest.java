@@ -10,7 +10,7 @@ import hw4.model.ImageModel;
 import hw4.model.Pixel;
 import hw4.controller.functions.BlurFunction;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test class for BlurFunction "blur" script command.

@@ -22,6 +22,12 @@ public class Pixel {
     this.b = b;
   }
 
+  /**
+   * Constructor for a pixel with a single rgb int. Used in conjunction with bufferedimage
+   * getRGB() function.
+   *
+   * @param rgb single int value of a pixels rgb values
+   */
   public Pixel(int rgb) {
     this.r = (rgb & 0xff0000) >> 16;
     this.g = (rgb & 0xff00) >> 8;
@@ -115,6 +121,15 @@ public class Pixel {
     return clampPixel(this.r + amt, this.g + amt, this.b + amt, max);
   }
 
+  /**
+   * Clamps a pixel to its min/max value for its RGB components.
+   *
+   * @param r   red value
+   * @param g   green value
+   * @param b   blue value
+   * @param max max rgb value
+   * @return clamped pixel
+   */
   public Pixel clampPixel(int r, int g, int b, int max) {
     //clamps to max value if above
     if (r > max) {
@@ -156,6 +171,12 @@ public class Pixel {
     return this.r == that.getRed() && this.b == that.getBlue() && this.g == that.getGreen();
   }
 
+  /**
+   * Gets single int rgb value of a pixel.
+   * Used in conjunction with bufferedimage setRGB() function.
+   *
+   * @return
+   */
   public int getRGB() {
     int rgb = this.r;
     rgb = (rgb << 8) + this.g;

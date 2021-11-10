@@ -2,10 +2,12 @@ import hw4.controller.functions.GreyScaleFunction;
 import hw4.model.Pixel;
 
 /**
- * Test class for GreyScale function "greyscale" script command
+ * Test class for GreyScale function "greyscale" script command.
  */
 public class GreyScaleFunctionTest extends AColorTransformTest {
-
+  /**
+   * Creates tests for valid/invalid usages of greyscale function in abstract parent class.
+   */
   public GreyScaleFunctionTest() {
     super(new Pixel(4, 5, 6),
             new Pixel(3, 3, 3),
