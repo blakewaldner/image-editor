@@ -195,6 +195,13 @@ public class Image {
             && this.getMax() == that.getMax() && this.getName().equals(that.getName());
   }
 
+  /**
+   * This function overrides the default java hashcode function. It helps with overriding the
+   * equality function for usage in testing equal images. Two Images are equal
+   * if they have the same Pixels and height,width, and max values.
+   *
+   * @return
+   */
   @Override
   public int hashCode() {
     return img.hashCode() * 100 + max;

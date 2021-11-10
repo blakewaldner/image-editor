@@ -19,15 +19,22 @@ import hw4.model.Image;
  */
 public class ImageUtil {
 
+  /**
+   * Reads a file of supported extension (bmp, png, jpg, ppm) and converts it
+   * to an image class.
+   * @param fileName path of file
+   * @param imageName name referred to by commands
+   * @return
+   */
   public static Image readFile(String fileName, String imageName) {
 
     int dotIndex = fileName.lastIndexOf(".");
-    if(dotIndex == -1 || dotIndex == fileName.length()-1) {
+    if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
       throw new IllegalArgumentException("Invalid file ext for file path");
     }
-    String ext = fileName.substring(dotIndex+1);
+    String ext = fileName.substring(dotIndex + 1);
 
-    if(ext.equalsIgnoreCase("ppm")) {
+    if (ext.equalsIgnoreCase("ppm")) {
       return readPPM(fileName, imageName);
     } else {
       BufferedImage img;
@@ -38,10 +45,10 @@ public class ImageUtil {
       }
       int height = img.getHeight();
       int width = img.getWidth();
-      Pixel[] [] imgList = new Pixel[height][width];
-      for(int i = 0; i < width; i++) {
-        for(int j = 0; j < height; j++) {
-          imgList[j][i] = new Pixel(img.getRGB(i,j));
+      Pixel[][] imgList = new Pixel[height][width];
+      for (int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+          imgList[j][i] = new Pixel(img.getRGB(i, j));
         }
       }
       //TODO: need max value for pngs/jpgs?
@@ -101,35 +108,43 @@ public class ImageUtil {
   }
 
   /**
-   * Writes an image class to a PPM file. Relevant for "save" command.
-   *
+   *  Writes an image class to a File. Supported extensions are png/jpg/bmp/ppm.
+   *  Relevant for "save" command.
    * @param fileName file path to be saved to
-   * @param image    image class being saved
-   * @throws IOException if filepath or image is invalid
+   * @param image image class being saved
+   * @throws IOException if file path or image is invalid
    */
   public static void writeImage(String fileName, Image image) throws IOException {
     int width = image.getWidth();
     int height = image.getHeight();
     int dotIndex = fileName.lastIndexOf(".");
-    if(dotIndex == -1 || dotIndex == fileName.length()-1) {
+    if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
       throw new IllegalArgumentException("Invalid file ext for file path");
     }
-    String ext = fileName.substring(dotIndex+1);
+    String ext = fileName.substring(dotIndex + 1);
     if (ext.equalsIgnoreCase("ppm")) {
       writePPM(fileName, image, width, height);
-    }
-    else {
+    } else {
       File file = new File(fileName);
       BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-      for(int i = 0; i < width; i++) {
+      for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-          img.setRGB(i,j,image.getPixel(j,i).getRGB());
+          img.setRGB(i, j, image.getPixel(j, i).getRGB());
         }
       }
       ImageIO.write(img, ext, file);
     }
   }
 
+  /**
+   * Writes an image class to a PPM file. Relevant for "save" command.
+   *
+   * @param fileName file path to be saved to
+   * @param image    image class being saved
+   * @param width    width of image
+   * @param height   height of image
+   * @throws IOException if filepath or image is invalid
+   */
   public static void writePPM(String fileName, Image image, int width, int height) throws IOException {
     int max = image.getMax();
     Pixel[][] img = image.getImg();

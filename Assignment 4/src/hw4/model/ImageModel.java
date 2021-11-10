@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * This class represents a model for the image project. The model is responsible for the methods
- * used in ImageControllerImpl.
+ * used in ImageControllerImpl. The model holds a list of the current images in queue to be used
+ * by script commands.
  */
 public class ImageModel implements ImageModelInterface {
   //Arraylist of images stored in the model. It intially has zero stored Images.

@@ -1,7 +1,9 @@
 import hw4.model.Pixel;
 import hw4.controller.functions.SepiaFunction;
 
-
+/**
+ * Test class for SepiaFunction "sepia" script command.
+ */
 public class SepiaFunctionTest extends AColorTransformTest {
 
   public SepiaFunctionTest() {

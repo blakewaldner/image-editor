@@ -11,6 +11,9 @@ import hw4.model.Pixel;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test class for AColorTransform class.
+ */
 public abstract class AColorTransformTest {
 
   ImageModel model;
@@ -48,7 +51,7 @@ public abstract class AColorTransformTest {
     assertEquals(newImage.getImg(), newPixels);
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidName() throws IOException {
     read = new StringReader("invalidname invalidname");
     scan = new Scanner(read);
@@ -57,7 +60,7 @@ public abstract class AColorTransformTest {
     func.doFunction(model, scan);
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidImage() throws IOException {
     read = new StringReader("thisname thisname");
     scan = new Scanner(read);

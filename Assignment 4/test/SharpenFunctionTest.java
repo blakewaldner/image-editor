@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
 
-import hw4.controller.functions.BlurFunction;
 import hw4.controller.functions.ImageFunction;
 import hw4.controller.functions.SharpenFunction;
 import hw4.model.Image;
@@ -13,7 +12,9 @@ import hw4.model.Pixel;
 
 import static org.junit.Assert.assertEquals;
 
-
+/**
+ * Test class for SharpenFunction "sharpen" script command.
+ */
 public class SharpenFunctionTest {
   ImageModel imageModel;
   Readable read;

@@ -3,14 +3,10 @@ import org.junit.Test;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
-import hw4.controller.ImageController;
-import hw4.controller.ImageControllerImpl;
 import hw4.controller.ImageUtil;
 import hw4.model.Image;
-import hw4.model.ImageModel;
 import hw4.model.Pixel;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +19,7 @@ public class ImageUtilTest {
 
   @Test
   public void validPPMExport() throws IOException {
-    Pixel [] [] img = new Pixel[2][2];
+    Pixel[][] img = new Pixel[2][2];
     img[0][0] = new Pixel(0, 255, 0);
     img[0][1] = new Pixel(255, 0, 0);
     img[1][1] = new Pixel(0, 0, 255);
@@ -63,7 +59,7 @@ public class ImageUtilTest {
 
   @Test
   public void validPNGExport() throws IOException {
-    Pixel [] [] img = new Pixel[2][2];
+    Pixel[][] img = new Pixel[2][2];
     img[0][0] = new Pixel(0, 255, 0);
     img[0][1] = new Pixel(255, 0, 0);
     img[1][1] = new Pixel(0, 0, 255);
@@ -76,7 +72,7 @@ public class ImageUtilTest {
 
   @Test
   public void validJPGExport() throws IOException {
-    Pixel [] [] img = new Pixel[2][2];
+    Pixel[][] img = new Pixel[2][2];
     img[0][0] = new Pixel(0, 255, 0);
     img[0][1] = new Pixel(255, 0, 0);
     img[1][1] = new Pixel(0, 0, 255);
@@ -111,7 +107,7 @@ public class ImageUtilTest {
     ImageUtil.writeImage("res/testjpg.jpg", image);
     Image newImage = ImageUtil.readFile("res/testjpg.jpg", "testjpg");
     //jpg = lossy so impossible to test pixels being same, checks if image size is retained
-    assertEquals(image.getHeight()+image.getWidth(), newImage.getHeight()+ newImage.getWidth());
+    assertEquals(image.getHeight() + image.getWidth(), newImage.getHeight() + newImage.getWidth());
   }
 
   @Test
