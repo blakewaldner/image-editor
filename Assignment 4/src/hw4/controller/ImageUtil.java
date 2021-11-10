@@ -22,7 +22,8 @@ public class ImageUtil {
   /**
    * Reads a file of supported extension (bmp, png, jpg, ppm) and converts it
    * to an image class.
-   * @param fileName path of file
+   *
+   * @param fileName  path of file
    * @param imageName name referred to by commands
    * @return
    */
@@ -108,10 +109,11 @@ public class ImageUtil {
   }
 
   /**
-   *  Writes an image class to a File. Supported extensions are png/jpg/bmp/ppm.
-   *  Relevant for "save" command.
+   * Writes an image class to a File. Supported extensions are png/jpg/bmp/ppm.
+   * Relevant for "save" command.
+   *
    * @param fileName file path to be saved to
-   * @param image image class being saved
+   * @param image    image class being saved
    * @throws IOException if file path or image is invalid
    */
   public static void writeImage(String fileName, Image image) throws IOException {

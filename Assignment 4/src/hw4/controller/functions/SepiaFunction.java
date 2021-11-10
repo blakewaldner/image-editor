@@ -30,8 +30,8 @@ public class SepiaFunction extends AColorTransform {
    * Performs the command's function on a given image according to inputs
    * from given scanner.
    *
-   * @param model list of images currently operating on
-   * @param scanner     inputted arguments
+   * @param model   list of images currently operating on
+   * @param scanner inputted arguments
    * @throws IOException if invalid input from scanner is read
    */
   @Override

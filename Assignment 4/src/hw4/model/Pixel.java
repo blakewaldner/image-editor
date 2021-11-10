@@ -24,7 +24,7 @@ public class Pixel {
 
   public Pixel(int rgb) {
     this.r = (rgb & 0xff0000) >> 16;
-    this.g = (rgb & 0xff00)  >> 8;
+    this.g = (rgb & 0xff00) >> 8;
     this.b = rgb & 0xff;
   }
 
