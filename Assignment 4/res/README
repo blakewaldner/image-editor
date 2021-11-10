@@ -60,6 +60,21 @@ file path for the file as a command line argument. Since script is in the res fo
 inputting just "res/script" as a command line argument works fine and should input the commands
 in the script.txt file.
 
+=== ADDITIONAL CHANGES FOR ASSIGNMENT 5===
+
+We added four additional function objects to the controller to implement the additional
+functionality. Since we are using the command design pattern, we believed that this was the
+most straightforward way to implement new functionality. Instead of extending and creating a new
+controller, we just had to add the two function objects to our ArrayList.
+
+In order to implement those four function objects, we decided to create two abstract classes
+that would then be extended by those function objects. The two abstract classes, AColorTransform
+and AKernel, contain helper functions that are used in the function objects' doFunction().
+
+We implemented a clamping function for RGB values in the Pixel class because we had to use
+them in multiple function objects.
+
+
 === SOURCE OF IMAGE ===
 
 "dog.ppm" Image sourced from:
