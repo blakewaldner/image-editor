@@ -147,7 +147,8 @@ public class ImageUtil {
    * @param height   height of image
    * @throws IOException if filepath or image is invalid
    */
-  public static void writePPM(String fileName, Image image, int width, int height) throws IOException {
+  public static void writePPM(String fileName, Image image, int width, int height)
+          throws IOException {
     int max = image.getMax();
     Pixel[][] img = image.getImg();
     FileOutputStream file = new FileOutputStream(fileName);

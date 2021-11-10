@@ -19,11 +19,11 @@ public class SharpenFunction extends AKernel {
    */
   public SharpenFunction() {
     super("sharpen", new double[][]{
-            new double[]{-0.125, -0.125, -0.125, -0.125, -0.125},
-            new double[]{-0.125, 0.25, 0.25, 0.25, -0.125},
-            new double[]{-0.125, 0.25, 1, 0.25, -0.125},
-            new double[]{-0.125, 0.25, 0.25, 0.25, -0.125},
-            new double[]{-0.125, -0.125, -0.125, -0.125, -0.125}
+        new double[]{-0.125, -0.125, -0.125, -0.125, -0.125},
+        new double[]{-0.125, 0.25, 0.25, 0.25, -0.125},
+        new double[]{-0.125, 0.25, 1, 0.25, -0.125},
+        new double[]{-0.125, 0.25, 0.25, 0.25, -0.125},
+        new double[]{-0.125, -0.125, -0.125, -0.125, -0.125}
     });
   }
 

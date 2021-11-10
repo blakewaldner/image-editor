@@ -47,13 +47,13 @@ public abstract class AKernel extends ImageFunction {
         if (modelRow >= 0
                 && modelRow < image.getHeight()
                 && (modelCol >= 0 && modelCol < image.getWidth())) {
-          sumRed += (image.getPixel(modelRow, modelCol).getRed() * kArray[i][j]); // how to convert from double to int???
+          sumRed += (image.getPixel(modelRow, modelCol).getRed() * kArray[i][j]);
           sumGreen += image.getPixel(modelRow, modelCol).getGreen() * kArray[i][j];
           sumBlue += image.getPixel(modelRow, modelCol).getBlue() * kArray[i][j];
 
         }
       }
     }
-    return new Pixel(sumRed, sumGreen, sumBlue).clampPixel(sumRed, sumGreen, sumBlue, image.getMax()); // good way to clamp
+    return new Pixel(sumRed, sumGreen, sumBlue).clampPixel(sumRed, sumGreen, sumBlue, image.getMax()); 
   }
 }

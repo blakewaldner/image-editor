@@ -19,9 +19,9 @@ public class GreyScaleFunction extends AColorTransform {
    */
   public GreyScaleFunction() {
     super("greyscale", new double[][]{
-            new double[]{0.2126, 0.7152, 0.0722},
-            new double[]{0.2126, 0.7152, 0.0722},
-            new double[]{0.2126, 0.7152, 0.0722}
+        new double[]{0.2126, 0.7152, 0.0722},
+        new double[]{0.2126, 0.7152, 0.0722},
+        new double[]{0.2126, 0.7152, 0.0722}
     });
   }
 

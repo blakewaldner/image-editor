@@ -15,9 +15,9 @@ public class BlurFunction extends AKernel {
    */
   public BlurFunction() {
     super("blur", new double[][]{
-            new double[]{0.0625, 0.125, 0.0625},
-            new double[]{0.125, 0.25, 0.125},
-            new double[]{0.0625, 0.125, 0.0625}
+        new double[]{0.0625, 0.125, 0.0625},
+        new double[]{0.125, 0.25, 0.125},
+        new double[]{0.0625, 0.125, 0.0625}
     });
   }
 
