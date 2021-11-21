@@ -90,6 +90,28 @@ public class ImageGUIView extends JFrame implements ActionListener {
     fileSaveButton.addActionListener(this);
     filesavePanel.add(fileSaveButton);
 
+    //JLabel imageLabel;
+    JScrollPane imageScrollPane;
+
+
+    imageLabel = new JLabel();
+    imageScrollPane = new JScrollPane(imageLabel);
+    //show an image with a scrollbar
+    imagePanel = new JPanel();
+    //a border around the panel with a caption
+    imagePanel.setBorder(BorderFactory.createTitledBorder("Showing an image"));
+    imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
+    //imagePanel.setMaximumSize(null);
+
+
+    imageScrollPane.setPreferredSize(new Dimension(100, 600));
+    imagePanel.add(imageScrollPane);
+
+    //histogram
+    histogramPanel = new HistogramRGB(model.getImageByName("image"));
+    histogramPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
+    histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
+
     ArrayList<ImageFunction> functions = new ArrayList();
     functions.add(new SaveFunction());
     functions.add(new LoadFunction());
@@ -123,39 +145,10 @@ public class ImageGUIView extends JFrame implements ActionListener {
     buttonMap.add(Arrays.asList("Value Component", "value-component"));
     buttonMap.add(Arrays.asList("Brighten", "brighten"));
     buttonMap.add(Arrays.asList("Darken", "darken"));
-    ImageFunctionPanel imageFunctionPanel = new ImageFunctionPanel(buttonMap, functions);
+    ImageFunctionPanel imageFunctionPanel = new ImageFunctionPanel(buttonMap, functions, model, imageLabel, imagePanel, histogramPanel);
     mainPanel.add(imageFunctionPanel);
-
-    //show an image with a scrollbar
-    imagePanel = new JPanel();
-    //a border around the panel with a caption
-    imagePanel.setBorder(BorderFactory.createTitledBorder("Showing an image"));
-    imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
-    //imagePanel.setMaximumSize(null);
     mainPanel.add(imagePanel);
-
-    //JLabel imageLabel;
-    JScrollPane imageScrollPane;
-
-
-    imageLabel = new JLabel();
-    imageScrollPane = new JScrollPane(imageLabel);
-
-
-
-    imageScrollPane.setPreferredSize(new Dimension(100, 600));
-    imagePanel.add(imageScrollPane);
-
-    //histogram
-    histogramPanel = new HistogramRGB(model.getImageByName("image"));
-    histogramPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
-    histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
     imagePanel.add(histogramPanel);
-
-    updateImageIcon();
-    //this.setLocationRelativeTo(null);
-
-
   }
 
   private void openFile() {
@@ -181,26 +174,6 @@ public class ImageGUIView extends JFrame implements ActionListener {
     }
   }
 
-  private void updateImageIcon() {
-    Image image = model.getImageByName("image");
-    int width = image.getWidth();
-    int height = image.getHeight();
-    BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-    for (int i = 0; i < width; i++) {
-      for (int j = 0; j < height; j++) {
-        img.setRGB(i, j, image.getPixel(j, i).getRGB());
-      }
-    }
-    imageLabel.setIcon(new ImageIcon(img));
-    //TODO: possible fix? inefficient
-    imagePanel.remove(histogramPanel);
-    histogramPanel = new HistogramRGB(model.getImageByName("image"));
-    histogramPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
-    histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
-    imagePanel.add(histogramPanel);
-    imagePanel.revalidate();
-  }
-
   /**
    * Invoked when an action occurs.
    *
@@ -209,8 +182,6 @@ public class ImageGUIView extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent arg0) {
 
-
-
     switch (arg0.getActionCommand()) {
       case "Open file": {
         openFile();
@@ -218,37 +189,6 @@ public class ImageGUIView extends JFrame implements ActionListener {
       break;
       case "Save file": {
         saveFile();
-      }
-      break;
-      case "brighten":
-      case "darken": {
-        for (int i = 0; i < functions.size(); i++) {
-          if (functions.get(i).getCommand().equals(arg0.getActionCommand())) {
-            try {
-              functions.get(i).doFunction(model, new Scanner(new StringReader(
-                      JOptionPane.showInputDialog("Change image by how much? " +
-                              "(Answer must be number)") + "\nimage\nimage")));
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-            updateImageIcon();
-            i = functions.size();
-          }
-        }
-      }
-      break;
-      default: {
-        for (int i = 0; i < functions.size(); i++) {
-          if (functions.get(i).getCommand().equals(arg0.getActionCommand())) {
-            try {
-              functions.get(i).doFunction(model, new Scanner(new StringReader("image\nimage")));
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-            updateImageIcon();
-            i = functions.size();
-          }
-        }
       }
       break;
     }
