@@ -5,31 +5,22 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 import hw4.model.Image;
+import hw4.model.ImageModel;
 
 public class HistogramRGB extends JPanel {
+  ImageModel model;
   Image image;
   int[] red = new int[256];
   int[] green = new int[256];
   int[] blue = new int[256];
   int[] intensity = new int[256];
 
-  public HistogramRGB(Image image){
-    if(image == null){
-      throw new IllegalArgumentException("Image is null");
+  public HistogramRGB(ImageModel model){
+    if(model == null) {
+      throw new IllegalArgumentException("Model is null");
     }
+    this.model = model;
     this.setPreferredSize(new Dimension(500,500));
-    this.image = image;
-    for(int i = 0; i < red.length; i ++){
-      red[i] = 0;
-      green[i] = 0;
-      blue[i] = 0;
-      intensity[i] = 0;
-    }
-    red = redValues();
-    blue = blueValues();
-    green = greenValues();
-    intensity = intensityValues();
-
   }
 
   public int[] redValues(){
@@ -69,7 +60,24 @@ public class HistogramRGB extends JPanel {
     return intensity;
   }
 
+  private void setValues() {
+    for(int i = 0; i < red.length; i ++){
+      red[i] = 0;
+      green[i] = 0;
+      blue[i] = 0;
+      intensity[i] = 0;
+    }
+    if(model.getImgList().size() != 0) {
+      this.image = this.model.getImageByName("image");
+      red = redValues();
+      blue = blueValues();
+      green = greenValues();
+      intensity = intensityValues();
+    }
+  }
+
   public void paint(Graphics g){
+    setValues();
     for(int i = 0; i < red.length - 1; i ++ ){
       g.setColor(Color.RED);
       g.drawLine(i,red[i]/5,i+1,red[i+1]/5);
@@ -84,6 +92,5 @@ public class HistogramRGB extends JPanel {
       g.drawLine(i,intensity[i]/5,i+1,intensity[i+1]/5);
     }
   }
-
 
 }

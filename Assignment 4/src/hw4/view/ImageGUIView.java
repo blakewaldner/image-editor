@@ -6,15 +6,10 @@ import java.awt.Dimension;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -38,10 +33,9 @@ import hw4.controller.functions.SepiaFunction;
 import hw4.controller.functions.SharpenFunction;
 import hw4.controller.functions.ValueComponentFunction;
 import hw4.controller.functions.VerticalFlipFunction;
-import hw4.model.Image;
 import hw4.model.ImageModel;
 
-public class ImageGUIView extends JFrame implements ActionListener {
+public class ImageGUIView extends JFrame{
 
   private ImageModel model;
   private JPanel mainPanel;
@@ -61,38 +55,8 @@ public class ImageGUIView extends JFrame implements ActionListener {
     mainScrollPane = new JScrollPane(mainPanel);
     add(mainScrollPane);
 
-
     model = new ImageModel();
-    //TODO: DEFAULT IMAGE HARD CODED IN
-    model.save(ImageUtil.readFile("res/dog.png", "image"));
-
-    JPanel dialogBoxesPanel = new JPanel();
-    dialogBoxesPanel.setBorder(BorderFactory.createTitledBorder("Dialog boxes"));
-    dialogBoxesPanel.setLayout(new BoxLayout(dialogBoxesPanel, BoxLayout.Y_AXIS));
-    mainPanel.add(dialogBoxesPanel);
-
-
-    //file open
-    JPanel fileopenPanel = new JPanel();
-    fileopenPanel.setLayout(new FlowLayout());
-    dialogBoxesPanel.add(fileopenPanel);
-    JButton fileOpenButton = new JButton("Open a file");
-    fileOpenButton.setActionCommand("Open file");
-    fileOpenButton.addActionListener(this);
-    fileopenPanel.add(fileOpenButton);
-
-    //file save
-    JPanel filesavePanel = new JPanel();
-    filesavePanel.setLayout(new FlowLayout());
-    dialogBoxesPanel.add(filesavePanel);
-    JButton fileSaveButton = new JButton("Save a file");
-    fileSaveButton.setActionCommand("Save file");
-    fileSaveButton.addActionListener(this);
-    filesavePanel.add(fileSaveButton);
-
-    //JLabel imageLabel;
     JScrollPane imageScrollPane;
-
 
     imageLabel = new JLabel();
     imageScrollPane = new JScrollPane(imageLabel);
@@ -101,17 +65,26 @@ public class ImageGUIView extends JFrame implements ActionListener {
     //a border around the panel with a caption
     imagePanel.setBorder(BorderFactory.createTitledBorder("Showing an image"));
     imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
-    //imagePanel.setMaximumSize(null);
-
 
     imageScrollPane.setPreferredSize(new Dimension(100, 600));
     imagePanel.add(imageScrollPane);
 
     //histogram
-    histogramPanel = new HistogramRGB(model.getImageByName("image"));
+    histogramPanel = new HistogramRGB(model);
     histogramPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
     histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
 
+    ImageFunctionPanel imageFunctionPanel = new ImageFunctionPanel(
+            createButtonMap(), createFunctions(),
+            model, imageLabel, histogramPanel);
+    FileFunctionPanel fileFunctionPanel = new FileFunctionPanel(model, imageLabel, histogramPanel);
+    mainPanel.add(fileFunctionPanel);
+    mainPanel.add(imageFunctionPanel);
+    mainPanel.add(imagePanel);
+    imagePanel.add(histogramPanel);
+  }
+
+  private ArrayList<ImageFunction> createFunctions() {
     ArrayList<ImageFunction> functions = new ArrayList();
     functions.add(new SaveFunction());
     functions.add(new LoadFunction());
@@ -129,7 +102,10 @@ public class ImageGUIView extends JFrame implements ActionListener {
     functions.add(new SharpenFunction());
     functions.add(new GreyScaleFunction());
     functions.add(new SepiaFunction());
+    return functions;
+  }
 
+  private List<List<String>> createButtonMap() {
     List<List<String>> buttonMap = new ArrayList<>();
     buttonMap.add(Arrays.asList("Blur", "blur"));
     buttonMap.add(Arrays.asList("Flip Horizontal", "horizontal-flip"));
@@ -145,52 +121,6 @@ public class ImageGUIView extends JFrame implements ActionListener {
     buttonMap.add(Arrays.asList("Value Component", "value-component"));
     buttonMap.add(Arrays.asList("Brighten", "brighten"));
     buttonMap.add(Arrays.asList("Darken", "darken"));
-    ImageFunctionPanel imageFunctionPanel = new ImageFunctionPanel(buttonMap, functions, model, imageLabel, imagePanel, histogramPanel);
-    mainPanel.add(imageFunctionPanel);
-    mainPanel.add(imagePanel);
-    imagePanel.add(histogramPanel);
-  }
-
-  private void openFile() {
-    final JFileChooser fchooser = new JFileChooser(".");
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "Images", "jpg", "png", "bmp", "ppm");
-    fchooser.setFileFilter(filter);
-    int retvalue = fchooser.showOpenDialog(ImageGUIView.this);
-    if (retvalue == JFileChooser.APPROVE_OPTION) {
-      File f = fchooser.getSelectedFile();
-      model.save(ImageUtil.readFile(f.getAbsolutePath(), "image"));
-      //TODO: change way image is displayed not through icon but image somehow
-      imageLabel.setIcon(new ImageIcon(f.getAbsolutePath()));
-    }
-  }
-
-  private void saveFile() {
-    final JFileChooser fchooser = new JFileChooser(".");
-    int retvalue = fchooser.showSaveDialog(ImageGUIView.this);
-    if (retvalue == JFileChooser.APPROVE_OPTION) {
-      File f = fchooser.getSelectedFile();
-      //fileSaveDisplay.setText(f.getAbsolutePath());
-    }
-  }
-
-  /**
-   * Invoked when an action occurs.
-   *
-   * @param arg0 the event to be processed
-   */
-  @Override
-  public void actionPerformed(ActionEvent arg0) {
-
-    switch (arg0.getActionCommand()) {
-      case "Open file": {
-        openFile();
-      }
-      break;
-      case "Save file": {
-        saveFile();
-      }
-      break;
-    }
+    return buttonMap;
   }
 }

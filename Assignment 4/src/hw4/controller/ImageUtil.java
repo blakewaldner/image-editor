@@ -128,13 +128,7 @@ public class ImageUtil {
       writePPM(fileName, image, width, height);
     } else {
       File file = new File(fileName);
-      BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-      for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
-          img.setRGB(i, j, image.getPixel(j, i).getRGB());
-        }
-      }
-      ImageIO.write(img, ext, file);
+      ImageIO.write(convertToBufferedImage(image), ext, file);
     }
   }
 
@@ -165,5 +159,17 @@ public class ImageUtil {
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("Invalid filepath when saving");
     }
+  }
+
+  public static BufferedImage convertToBufferedImage(Image image) {
+    int width = image.getWidth();
+    int height = image.getHeight();
+    BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        img.setRGB(i, j, image.getPixel(j, i).getRGB());
+      }
+    }
+    return img;
   }
 }

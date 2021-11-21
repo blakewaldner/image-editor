@@ -2,12 +2,14 @@ import org.junit.Test;
 
 import hw4.controller.HistogramRGB;
 import hw4.model.Image;
+import hw4.model.ImageModel;
 import hw4.model.Pixel;
 
 import static org.junit.Assert.*;
 
 public class HistogramRGBTest {
   Image image;
+  ImageModel model;
   HistogramRGB a;
 
   private void initializer(){
@@ -23,18 +25,21 @@ public class HistogramRGBTest {
     img[1][1] = c;
     img[1][0] = d;
 
-    image = new Image(img, "test");
-    a = new HistogramRGB(image);
+    image = new Image(img, "image");
+    model = new ImageModel();
+    model.save(image);
+
+    a = new HistogramRGB(model);
 
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testInvailidInput(){
-    a = new HistogramRGB(image);
+    a = new HistogramRGB(model);
   }
 
   @Test
-  public void testredValues() {
+  public void testRedValues() {
     initializer();
     int[] x = {1,0,3,5};
     assertEquals(a.redValues(), x);
