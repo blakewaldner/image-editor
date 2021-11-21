@@ -199,7 +199,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
     histogramPanel = new HistogramRGB(model.getImageByName("image"));
     histogramPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
     histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
-    mainPanel.add(histogramPanel);
+    imagePanel.add(histogramPanel);
 
     //this.setLocationRelativeTo(null);
 
