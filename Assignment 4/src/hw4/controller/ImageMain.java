@@ -17,28 +17,42 @@ public class ImageMain {
    * @param args is input from the terminal.
    * @throws IOException when ImageController throws an IOException.
    */
-  public static void main(String[] args) throws IOException {
 
-    Readable read;
+  public static void main(String[] args) throws IOException {
+    Readable read = null;
     //checks if any command line arguments given, inserts file with commands into code if there is
     if (args.length > 0) {
-      try {
-        //attempts to create file with argument
-        File file = new File(args[0]);
-        read = new FileReader(file);
-      } catch (FileNotFoundException e) {
-        //invalid file or no file, defaults to system.in for input
-        System.out.println("Error loading file from configuration, defaulting to System.in");
+      if(args[0].equalsIgnoreCase("-file")) {
+        if (args.length > 1) {
+          try {
+            //attempts to create file with argument
+            File file = new File(args[1]);
+            read = new FileReader(file);
+          } catch (FileNotFoundException e) {
+            //invalid file or no file, defaults to system.in for input
+            System.out.println("Error loading file from configuration, defaulting to System.in");
+            read = new InputStreamReader(System.in);
+          }
+        }
+      } else if (args[0].equalsIgnoreCase("-text")) {
         read = new InputStreamReader(System.in);
       }
+      if(read != null) {
+        //creates controller, defaults appendable to system.out currently
+        ImageController controller = new ImageControllerImpl(read, System.out);
+        controller.startProcess();
+      }
     } else {
-      read = new InputStreamReader(System.in);
+      //TODO: default case, run gui
+      ImageController controller = new ImageControllerImplGUI();
+      controller.startProcess();
     }
 
-    //creates controller, defaults appendable to system.out currently
-    ImageController controller = new ImageControllerImpl(read, System.out);
-    controller.startProcess();
+   //TODO:
+   /*
+   Any other command-line arguments are invalid:
+   in these cases the program should display an error message suitably and quit.
+    */
 
   }
-
 }
