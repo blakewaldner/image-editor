@@ -1,13 +1,19 @@
 package hw4.view;
 
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -42,7 +48,6 @@ public class ImageGUIView extends JFrame implements ActionListener {
   private JScrollPane mainScrollPane;
   private JLabel imageLabel;
   private JPanel histogramPanel;
-  private Graphics g;
   private JPanel imagePanel;
 
   public ImageGUIView() {
@@ -85,96 +90,41 @@ public class ImageGUIView extends JFrame implements ActionListener {
     fileSaveButton.addActionListener(this);
     filesavePanel.add(fileSaveButton);
 
-    //button panel
-    JPanel messageDialogPanel = new JPanel();
-    messageDialogPanel.setBorder(BorderFactory.createTitledBorder("Image functions"));
-    messageDialogPanel.setLayout(new BoxLayout(messageDialogPanel, BoxLayout.Y_AXIS));
-    mainPanel.add(messageDialogPanel);
+    ArrayList<ImageFunction> functions = new ArrayList();
+    functions.add(new SaveFunction());
+    functions.add(new LoadFunction());
+    functions.add(new BrightenFunction());
+    functions.add(new DarkenFunction());
+    functions.add(new HorizontalFlipFunction());
+    functions.add(new VerticalFlipFunction());
+    functions.add(new RedComponentFunction());
+    functions.add(new GreenComponentFunction());
+    functions.add(new BlueComponentFunction());
+    functions.add(new LumaComponentFunction());
+    functions.add(new ValueComponentFunction());
+    functions.add(new IntensityComponentFunction());
+    functions.add(new BlurFunction());
+    functions.add(new SharpenFunction());
+    functions.add(new GreyScaleFunction());
+    functions.add(new SepiaFunction());
 
-
-    //button blur
-    JButton blurButton = new JButton("Blur");
-    blurButton.setActionCommand("blur");
-    blurButton.addActionListener(this);
-    messageDialogPanel.add(blurButton);
-
-    //button flip h
-    JButton flipHButton = new JButton("Flip Horizontal");
-    flipHButton.setActionCommand("horizontal-flip");
-    flipHButton.addActionListener(this);
-    messageDialogPanel.add(flipHButton);
-
-    //button flip v
-    JButton flipVButton = new JButton("Flip Vertical");
-    flipVButton.setActionCommand("vertical-flip");
-    flipVButton.addActionListener(this);
-    messageDialogPanel.add(flipVButton);
-
-    //button sepia
-    JButton sepiaButton = new JButton("Sepia");
-    sepiaButton.setActionCommand("sepia");
-    sepiaButton.addActionListener(this);
-    messageDialogPanel.add(sepiaButton);
-
-    //button greyscale
-    JButton greyscaleButton = new JButton("Greyscale");
-    greyscaleButton.setActionCommand("greyscale");
-    greyscaleButton.addActionListener(this);
-    messageDialogPanel.add(greyscaleButton);
-
-    //button sharpen
-    JButton sharpenButton = new JButton("Sharpen");
-    sharpenButton.setActionCommand("sharpen");
-    sharpenButton.addActionListener(this);
-    messageDialogPanel.add(sharpenButton);
-
-    //button red comp
-    JButton redComponentButton = new JButton("Red Component");
-    redComponentButton.setActionCommand("red-component");
-    redComponentButton.addActionListener(this);
-    messageDialogPanel.add(redComponentButton);
-
-    //button green comp
-    JButton greenComponentButton = new JButton("Green Component");
-    greenComponentButton.setActionCommand("green-component");
-    greenComponentButton.addActionListener(this);
-    messageDialogPanel.add(greenComponentButton);
-
-    //button blue comp
-    JButton blueComponentButton = new JButton("Blue Component");
-    blueComponentButton.setActionCommand("blue-component");
-    blueComponentButton.addActionListener(this);
-    messageDialogPanel.add(blueComponentButton);
-
-    //button luma comp
-    JButton lumaComponentButton = new JButton("Luma Component");
-    lumaComponentButton.setActionCommand("blue-component");
-    lumaComponentButton.addActionListener(this);
-    messageDialogPanel.add(lumaComponentButton);
-
-    //button intensity comp
-    JButton intensityComponentButton = new JButton("Intensity Component");
-    intensityComponentButton.setActionCommand("intensity-component");
-    intensityComponentButton.addActionListener(this);
-    messageDialogPanel.add(intensityComponentButton);
-
-    //button value comp
-    JButton valueComponentButton = new JButton("Value Component");
-    valueComponentButton.setActionCommand("value-component");
-    valueComponentButton.addActionListener(this);
-    messageDialogPanel.add(valueComponentButton);
-
-    //button brighten
-    JButton brightenButton = new JButton("Brighten");
-    brightenButton.setActionCommand("brighten");
-    brightenButton.addActionListener(this);
-    messageDialogPanel.add(brightenButton);
-
-    //button brighten
-    JButton darkenButton = new JButton("Darken");
-    darkenButton.setActionCommand("darken");
-    darkenButton.addActionListener(this);
-    messageDialogPanel.add(darkenButton);
+    List<List<String>> buttonMap = new ArrayList<>();
+    buttonMap.add(Arrays.asList("Blur", "blur"));
+    buttonMap.add(Arrays.asList("Flip Horizontal", "horizontal-flip"));
+    buttonMap.add(Arrays.asList("Flip Vertical", "vertical-flip"));
+    buttonMap.add(Arrays.asList("Sepia", "sepia"));
+    buttonMap.add(Arrays.asList("Greyscale", "greyscale"));
+    buttonMap.add(Arrays.asList("Sharpen", "sharpen"));
+    buttonMap.add(Arrays.asList("Red Component", "red-component"));
+    buttonMap.add(Arrays.asList("Green Component", "green-component"));
+    buttonMap.add(Arrays.asList("Blue Component", "blue-component"));
+    buttonMap.add(Arrays.asList("Luma Component", "luma-component"));
+    buttonMap.add(Arrays.asList("Intensity Component", "intensity-component"));
+    buttonMap.add(Arrays.asList("Value Component", "value-component"));
+    buttonMap.add(Arrays.asList("Brighten", "brighten"));
+    buttonMap.add(Arrays.asList("Darken", "darken"));
+    ImageFunctionPanel imageFunctionPanel = new ImageFunctionPanel(buttonMap, functions);
+    mainPanel.add(imageFunctionPanel);
 
     //show an image with a scrollbar
     imagePanel = new JPanel();
@@ -259,23 +209,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent arg0) {
 
-    ArrayList<ImageFunction> functions = new ArrayList();
-    functions.add(new SaveFunction());
-    functions.add(new LoadFunction());
-    functions.add(new BrightenFunction());
-    functions.add(new DarkenFunction());
-    functions.add(new HorizontalFlipFunction());
-    functions.add(new VerticalFlipFunction());
-    functions.add(new RedComponentFunction());
-    functions.add(new GreenComponentFunction());
-    functions.add(new BlueComponentFunction());
-    functions.add(new LumaComponentFunction());
-    functions.add(new ValueComponentFunction());
-    functions.add(new IntensityComponentFunction());
-    functions.add(new BlurFunction());
-    functions.add(new SharpenFunction());
-    functions.add(new GreyScaleFunction());
-    functions.add(new SepiaFunction());
+
 
     switch (arg0.getActionCommand()) {
       case "Open file": {
