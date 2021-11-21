@@ -86,7 +86,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
 
     //button panel
     JPanel messageDialogPanel = new JPanel();
-    dialogBoxesPanel.setBorder(BorderFactory.createTitledBorder("Dialog boxes"));
+    messageDialogPanel.setBorder(BorderFactory.createTitledBorder("Image functions"));
     messageDialogPanel.setLayout(new BoxLayout(messageDialogPanel, BoxLayout.Y_AXIS));
     mainPanel.add(messageDialogPanel);
 
