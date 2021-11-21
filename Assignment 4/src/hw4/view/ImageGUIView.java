@@ -43,6 +43,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
   private JLabel imageLabel;
   private JPanel histogramPanel;
   private Graphics g;
+  private JPanel imagePanel;
 
   public ImageGUIView() {
     super();
@@ -176,7 +177,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
     messageDialogPanel.add(darkenButton);
 
     //show an image with a scrollbar
-    JPanel imagePanel = new JPanel();
+    imagePanel = new JPanel();
     //a border around the panel with a caption
     imagePanel.setBorder(BorderFactory.createTitledBorder("Showing an image"));
     imagePanel.setLayout(new GridLayout(1, 0, 10, 10));
@@ -191,7 +192,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
     imageScrollPane = new JScrollPane(imageLabel);
 
 
-    updateImageIcon();
+
     imageScrollPane.setPreferredSize(new Dimension(100, 600));
     imagePanel.add(imageScrollPane);
 
@@ -201,6 +202,7 @@ public class ImageGUIView extends JFrame implements ActionListener {
     histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
     imagePanel.add(histogramPanel);
 
+    updateImageIcon();
     //this.setLocationRelativeTo(null);
 
 
@@ -240,6 +242,13 @@ public class ImageGUIView extends JFrame implements ActionListener {
       }
     }
     imageLabel.setIcon(new ImageIcon(img));
+    //TODO: possible fix? inefficient
+    imagePanel.remove(histogramPanel);
+    histogramPanel = new HistogramRGB(model.getImageByName("image"));
+    histogramPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
+    histogramPanel.setLayout(new BoxLayout(histogramPanel, BoxLayout.X_AXIS));
+    imagePanel.add(histogramPanel);
+    imagePanel.revalidate();
   }
 
   /**
