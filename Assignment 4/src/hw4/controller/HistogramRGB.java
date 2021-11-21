@@ -14,6 +14,9 @@ public class HistogramRGB extends JPanel {
   int[] intensity = new int[256];
 
   public HistogramRGB(Image image){
+    if(image == null){
+      throw new IllegalArgumentException("Image is null");
+    }
     this.setPreferredSize(new Dimension(500,500));
     this.image = image;
     for(int i = 0; i < red.length; i ++){
