@@ -4,12 +4,30 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 
 import javax.imageio.ImageIO;
 
+import hw4.controller.functions.BlueComponentFunction;
+import hw4.controller.functions.BlurFunction;
+import hw4.controller.functions.BrightenFunction;
+import hw4.controller.functions.DarkenFunction;
+import hw4.controller.functions.GreenComponentFunction;
+import hw4.controller.functions.GreyScaleFunction;
+import hw4.controller.functions.HorizontalFlipFunction;
+import hw4.controller.functions.ImageFunction;
+import hw4.controller.functions.IntensityComponentFunction;
+import hw4.controller.functions.LoadFunction;
+import hw4.controller.functions.LumaComponentFunction;
+import hw4.controller.functions.RedComponentFunction;
+import hw4.controller.functions.SaveFunction;
+import hw4.controller.functions.SepiaFunction;
+import hw4.controller.functions.SharpenFunction;
+import hw4.controller.functions.ValueComponentFunction;
+import hw4.controller.functions.VerticalFlipFunction;
 import hw4.model.Pixel;
 import hw4.model.Image;
 
@@ -25,7 +43,7 @@ public class ImageUtil {
    *
    * @param fileName  path of file
    * @param imageName name referred to by commands
-   * @return
+   * @return image object from file
    */
   public static Image readFile(String fileName, String imageName) {
 
@@ -52,7 +70,6 @@ public class ImageUtil {
           imgList[j][i] = new Pixel(img.getRGB(i, j));
         }
       }
-      //TODO: need max value for pngs/jpgs?
       return new Image(imgList, imageName);
     }
   }
@@ -146,9 +163,9 @@ public class ImageUtil {
     int max = image.getMax();
     Pixel[][] img = image.getImg();
     FileOutputStream file = new FileOutputStream(fileName);
-    file.write(new String("P3\n").getBytes());
-    file.write(new String("" + width + " " + height + "\n").getBytes());
-    file.write(new String("" + max + "\n").getBytes());
+    file.write("P3\n".getBytes());
+    file.write(("" + width + " " + height + "\n").getBytes());
+    file.write(("" + max + "\n").getBytes());
     for (int i = 0; i < img.length; i++) {
       for (int j = 0; j < img[i].length; j++) {
         file.write(img[i][j].toString().getBytes());
@@ -171,5 +188,26 @@ public class ImageUtil {
       }
     }
     return img;
+  }
+
+  public static ArrayList<ImageFunction> createFunctions() {
+    ArrayList<ImageFunction> functions = new ArrayList();
+    functions.add(new SaveFunction());
+    functions.add(new LoadFunction());
+    functions.add(new BrightenFunction());
+    functions.add(new DarkenFunction());
+    functions.add(new HorizontalFlipFunction());
+    functions.add(new VerticalFlipFunction());
+    functions.add(new RedComponentFunction());
+    functions.add(new GreenComponentFunction());
+    functions.add(new BlueComponentFunction());
+    functions.add(new LumaComponentFunction());
+    functions.add(new ValueComponentFunction());
+    functions.add(new IntensityComponentFunction());
+    functions.add(new BlurFunction());
+    functions.add(new SharpenFunction());
+    functions.add(new GreyScaleFunction());
+    functions.add(new SepiaFunction());
+    return functions;
   }
 }

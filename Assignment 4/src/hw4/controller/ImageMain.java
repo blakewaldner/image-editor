@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * This class represents the main class. It is used to run the program startProcess.
+ * This class represents the main class. It is used to run the controller with the appropriate
+ * parameters.
  */
 public class ImageMain {
 
@@ -20,39 +21,33 @@ public class ImageMain {
 
   public static void main(String[] args) throws IOException {
     Readable read = null;
-    //checks if any command line arguments given, inserts file with commands into code if there is
+    //checks if any command line arguments given
     if (args.length > 0) {
-      if(args[0].equalsIgnoreCase("-file")) {
+      if (args[0].equalsIgnoreCase("-file")) {
         if (args.length > 1) {
           try {
-            //attempts to create file with argument
+            //attempts to load script file with argument
             File file = new File(args[1]);
             read = new FileReader(file);
           } catch (FileNotFoundException e) {
-            //invalid file or no file, defaults to system.in for input
-            System.out.println("Error loading file from configuration, defaulting to System.in");
-            read = new InputStreamReader(System.in);
+            System.out.println("Error loading script file from arguments");
           }
+        } else {
+          System.out.println("Error loading script file from arguments");
         }
       } else if (args[0].equalsIgnoreCase("-text")) {
+        //if -text arg, then interactive text mode
         read = new InputStreamReader(System.in);
       }
-      if(read != null) {
-        //creates controller, defaults appendable to system.out currently
+      if (read != null) {
+        //creates controller
         ImageController controller = new ImageControllerImpl(read, System.out);
         controller.startProcess();
       }
     } else {
-      //TODO: default case, run gui
-      ImageController controller = new ImageControllerImplGUI();
+      //default case, no args = run gui
+      ImageController controller = new ImageControllerImpl();
       controller.startProcess();
     }
-
-   //TODO:
-   /*
-   Any other command-line arguments are invalid:
-   in these cases the program should display an error message suitably and quit.
-    */
-
   }
 }
