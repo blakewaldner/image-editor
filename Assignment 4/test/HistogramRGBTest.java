@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-import hw4.controller.HistogramRGB;
+import hw4.view.HistogramPanel;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class HistogramRGBTest {
   Image image;
   ImageModel model;
-  HistogramRGB a;
+  HistogramPanel a;
 
   private void initializer(){
     Pixel z = new Pixel(1, 2, 3);
@@ -29,13 +29,13 @@ public class HistogramRGBTest {
     model = new ImageModel();
     model.save(image);
 
-    a = new HistogramRGB(model);
+    a = new HistogramPanel(model);
 
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testInvailidInput(){
-    a = new HistogramRGB(model);
+    a = new HistogramPanel(model);
   }
 
   @Test

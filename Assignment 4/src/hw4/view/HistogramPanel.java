@@ -1,4 +1,4 @@
-package hw4.controller;
+package hw4.view;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,7 +7,7 @@ import java.awt.Color;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 
-public class HistogramRGB extends JPanel {
+public class HistogramPanel extends JPanel {
   ImageModel model;
   Image image;
   int[] red = new int[256];
@@ -15,7 +15,7 @@ public class HistogramRGB extends JPanel {
   int[] blue = new int[256];
   int[] intensity = new int[256];
 
-  public HistogramRGB(ImageModel model){
+  public HistogramPanel(ImageModel model){
     if(model == null) {
       throw new IllegalArgumentException("Model is null");
     }

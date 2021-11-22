@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 
-import hw4.controller.HistogramRGB;
 import hw4.model.ImageModel;
 
 public class ImageGUIFrame extends JFrame {
@@ -49,7 +48,7 @@ public class ImageGUIFrame extends JFrame {
 
     model = new ImageModel();
 
-    histogramPanel = new HistogramRGB(model);
+    histogramPanel = new HistogramPanel(model);
     imageFunctionPanel = new ImageFunctionPanel(model, imageLabel, histogramPanel, view);
     fileFunctionPanel = new FileFunctionPanel(model, imageLabel, histogramPanel, view);
 
