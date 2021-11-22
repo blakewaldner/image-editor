@@ -90,7 +90,6 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
     if (retvalue == JFileChooser.APPROVE_OPTION) {
       File f = fchooser.getSelectedFile();
       model.save(ImageUtil.readFile(f.getAbsolutePath(), "image"));
-      //TODO: change way image is displayed not through icon but image somehow
       imageLabel.setIcon(new ImageIcon(
               ImageUtil.convertToBufferedImage(model.getImageByName("image"))));
     }
