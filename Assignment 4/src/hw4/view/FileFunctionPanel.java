@@ -84,7 +84,7 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
   private void openFile() {
     JFileChooser fchooser = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "Images", "jpg", "png", "bmp", "ppm");
+            "Images", "jpg", "png", "bmp", "ppm","jpeg");
     fchooser.setFileFilter(filter);
     int retvalue = fchooser.showOpenDialog(this);
     if (retvalue == JFileChooser.APPROVE_OPTION) {
