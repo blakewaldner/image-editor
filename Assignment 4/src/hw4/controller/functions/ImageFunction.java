@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 
 /**
  * Abstract class for a command that can be run by the program
@@ -33,7 +34,7 @@ public abstract class ImageFunction {
    * @param s     inputted arguments
    * @throws IOException if invalid input from scanner is read
    */
-  public abstract void doFunction(ImageModel model, Scanner s) throws IOException;
+  public abstract void doFunction(ImageModelInterface model, Scanner s) throws IOException;
 
   /**
    * This function returns the command string.

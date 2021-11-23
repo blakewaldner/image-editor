@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import hw4.model.ImageModel;
+import hw4.view.GuiView;
+import hw4.view.JFrameView;
+
 /**
  * This class represents the main class. It is used to run the controller with the appropriate
  * parameters.
@@ -46,8 +50,10 @@ public class ImageMain {
       }
     } else {
       //default case, no args = run gui
-      ImageController controller = new ImageControllerImpl();
-      controller.startProcess();
+      //ImageController controller = new ImageControllerImpl();
+      ImageControllerGUI controller = new ImageControllerGUI(new ImageModel());
+      GuiView view = new JFrameView();
+      controller.setView(view);
     }
   }
 }

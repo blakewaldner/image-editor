@@ -3,7 +3,7 @@ package hw4.controller.functions;
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 import hw4.controller.ImageUtil;
 
 /**
@@ -30,7 +30,7 @@ public class LoadFunction extends ImageFunction {
    * @param scanner inputted arguments
    * @throws IOException if invalid input from scanner is read
    */
-  public void doFunction(ImageModel model, Scanner scanner) {
+  public void doFunction(ImageModelInterface model, Scanner scanner) {
     String imagePath = scanner.next();//args[1];
     String imageName = scanner.next();//args[2];
     model.save(ImageUtil.readFile(imagePath, imageName));

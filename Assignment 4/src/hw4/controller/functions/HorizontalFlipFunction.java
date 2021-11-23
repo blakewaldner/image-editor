@@ -3,7 +3,7 @@ package hw4.controller.functions;
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 
 /**
  * This class represents the command for "horizontal-flip". It horizontally
@@ -30,7 +30,7 @@ public class HorizontalFlipFunction extends ImageFunction {
    * @param scanner inputted arguments
    * @throws IOException if invalid input from scanner is read
    */
-  public void doFunction(ImageModel model, Scanner scanner) {
+  public void doFunction(ImageModelInterface model, Scanner scanner) {
     String imageName = scanner.next();//args[1];
     String destImageName = scanner.next();//args[2];
     model.save(model.getImageByName(imageName).flipHorizontal(destImageName));

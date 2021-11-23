@@ -14,10 +14,11 @@ public class HistogramRGBTest {
   Image image;
   ImageModel model;
   HistogramPanel a;
+  int[] x;
 
   private void initializer(){
     Pixel z = new Pixel(1, 2, 3);
-    Pixel b = new Pixel(0, 0, 0);
+    Pixel b = new Pixel(1, 0, 0);
     Pixel c = new Pixel(3, 3, 4);
     Pixel d = new Pixel(5, 5, 5);
 
@@ -25,49 +26,84 @@ public class HistogramRGBTest {
 
     img[0][0] = z;
     img[0][1] = b;
-    img[1][1] = c;
-    img[1][0] = d;
+    img[1][0] = c;
+    img[1][1] = d;
 
     image = new Image(img, "image");
     model = new ImageModel();
     model.save(image);
 
-    a = new HistogramPanel(model);
+    a = new HistogramPanel();
 
+     x = new int[256];
+    for(int a : x){
+      a = 0;
+    }
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testInvailidInput(){
-    a = new HistogramPanel(model);
-  }
+
 
   @Test
   public void testRedValues() {
     initializer();
-    int[] x = {1,0,3,5};
-    assertEquals(a.redValues(), x);
-
+    assertArrayEquals(a.getRed(), x);
   }
 
   @Test
   public void blueValues() {
     initializer();
-    int[] x = {2,0,3,5};
-    assertEquals(a.blueValues(), x);
+    assertArrayEquals(a.getBlue(), x);
   }
 
   @Test
   public void greenValues() {
     initializer();
-    int[] x = {3,0,4,5};
-    assertEquals(a.greenValues(), x);
+    assertArrayEquals(a.getGreen(), x);
   }
 
   @Test
   public void intensityValues() {
     initializer();
-    int[] x = {2,0,3,5};
-    assertEquals(a.intensityValues(), x);
+    assertArrayEquals(a.getIntensity(), x);
   }
 
+  @Test
+  public void testSetUpValues(){
+    initializer();
+    assertArrayEquals(a.getRed(), x);
+    assertArrayEquals(a.getBlue(), x);
+    assertArrayEquals(a.getGreen(), x);
+    assertArrayEquals(a.getIntensity(), x);
+
+    a.setValues();
+
+    x[1] = 2;
+    x[3] = 1;
+    x[5] = 1;
+    assertArrayEquals(a.getRed(),x);
+
+    x[0] = 1;
+    x[1] = 0;
+    x[2] = 1;
+    x[3] = 1;
+    x[5] = 1;
+    assertArrayEquals(a.getGreen(),x);
+
+    x[0] = 1;
+    x[1] = 0;
+    x[2] = 0;
+    x[3] = 1;
+    x[4] = 1;
+    x[5] = 1;
+    assertArrayEquals(a.getBlue(),x);
+
+    x[0] = 1;
+    x[1] = 0;
+    x[2] = 1;
+    x[3] = 1;
+    x[4] = 0;
+    x[5] = 1;
+    assertArrayEquals(a.getIntensity(),x);
+
+  }
 }

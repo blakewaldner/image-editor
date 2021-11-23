@@ -3,7 +3,7 @@ package hw4.controller.functions;
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 
 /**
  * This class represents a kernel that blurs an image.
@@ -30,7 +30,7 @@ public class BlurFunction extends AKernel {
    * @throws IOException if invalid input from scanner is read
    */
   @Override
-  public void doFunction(ImageModel model, Scanner scanner) throws IOException {
+  public void doFunction(ImageModelInterface model, Scanner scanner) throws IOException {
     String imageName = scanner.next();//args[1];
     String destImageName = scanner.next();//args[2];
     model.save(applyKernel(model.getImageByName(imageName), destImageName));

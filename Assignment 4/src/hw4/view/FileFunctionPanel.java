@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -18,11 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import hw4.controller.ImageUtil;
 import hw4.model.ImageModel;
 
-/**
- * This class represents the GUI JPanel that holds the buttons for
- * opening/saving an image.
- */
-public class FileFunctionPanel extends JPanel implements ActionListener {
+public class FileFunctionPanel extends JPanel{
 
   private ImageModel model;
   private JLabel imageLabel;
@@ -31,19 +28,11 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
   private JButton fileSaveButton;
   private ImageGUIView view;
 
-  /**
-   * This constructs a new FileFunctionPanel for the main ImageGUIFrame to hold.
-   * @param model model that holds current image state
-   * @param imageLabel JLabel that is displaying image
-   * @param histogramPanel JPanel that is displaying histogram
-   * @param view view for rendering error messages
-   */
-  public FileFunctionPanel(ImageModel model, JLabel imageLabel, JPanel histogramPanel,
-                           ImageGUIView view) {
-    this.model = model;
+  public FileFunctionPanel(JLabel imageLabel, JPanel histogramPanel) {
+    //this.model = model;
     this.imageLabel = imageLabel;
     this.histogramPanel = histogramPanel;
-    this.view = view;
+    //this.view = view;
 
     setBorder(BorderFactory.createTitledBorder("File functions"));
     setLayout(new GridLayout(1, 2, 10, 10));
@@ -51,59 +40,51 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
 
     fileOpenButton = new JButton("Open a file");
     fileOpenButton.setActionCommand("Open file");
-    fileOpenButton.addActionListener(this);
 
     fileSaveButton = new JButton("Save a file");
     fileSaveButton.setActionCommand("Save file");
-    fileSaveButton.addActionListener(this);
 
     add(fileOpenButton);
     add(fileSaveButton);
   }
 
-  private void saveFile() throws IOException {
-    JFileChooser fchooser = new JFileChooser(".");
-    fchooser.setSelectedFile(new File("image.png"));
-    int retvalue = fchooser.showSaveDialog(this);
-    if (retvalue == JFileChooser.APPROVE_OPTION) {
-      ImageUtil.writeImage(fchooser.getSelectedFile().getName(), model.getImageByName("image"));
-    }
-  }
-
-  /**
-   * Invoked when an action occurs.
-   *
-   * @param arg0 the event to be processed
-   */
-  @Override
-  public void actionPerformed(ActionEvent arg0) {
-    if (arg0.getActionCommand().equals("Open file")) {
-      openFile();
-    } else if (arg0.getActionCommand().equals("Save file")) {
-      if (model.getImgList().size() != 0) {
-        try {
-          saveFile();
-        } catch (IOException | IllegalArgumentException e) {
-          view.renderMessage("Error saving file");
-        }
-      } else {
-        view.renderMessage("No image currently loaded");
+  public void addFeatures(Features a) {
+    fileOpenButton.addActionListener(evt -> a.open(this));
+    fileSaveButton.addActionListener(evt -> {
+      try {
+        a.save(this);
+      } catch (IOException e) {
+        view.renderMessage("Error when saving file");
       }
-    }
-  }
-
-  private void openFile() {
-    JFileChooser fchooser = new JFileChooser(".");
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "Images", "jpg", "png", "bmp", "ppm","jpeg");
-    fchooser.setFileFilter(filter);
-    int retvalue = fchooser.showOpenDialog(this);
-    if (retvalue == JFileChooser.APPROVE_OPTION) {
-      File f = fchooser.getSelectedFile();
-      model.save(ImageUtil.readFile(f.getAbsolutePath(), "image"));
-      imageLabel.setIcon(new ImageIcon(
-              ImageUtil.convertToBufferedImage(model.getImageByName("image"))));
-    }
-    histogramPanel.repaint();
+    });
   }
 }
+
+//  private void saveFile() throws IOException {
+//    JFileChooser fchooser = new JFileChooser(".");
+//    fchooser.setSelectedFile(new File("image.png"));
+//    int retvalue = fchooser.showSaveDialog(this);
+//    if (retvalue == JFileChooser.APPROVE_OPTION) {
+//      ImageUtil.writeImage(fchooser.getSelectedFile().getName(), model.getImageByName("image"));
+//    }
+//  }
+
+
+//  @Override
+//  public void actionPerformed(ActionEvent arg0) {
+//    if (arg0.getActionCommand().equals("Open file")) {
+//      openFile();
+//    } else if (arg0.getActionCommand().equals("Save file")) {
+//      if (model.getImgList().size() != 0) {
+//        try {
+//          saveFile();
+//        } catch (IOException | IllegalArgumentException e) {
+//          view.renderMessage("Error saving file");
+//        }
+//      } else {
+//        view.renderMessage("No image currently loaded");
+//      }
+//    }
+//  }
+
+

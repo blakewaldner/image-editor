@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 
 /**
  * This class represents the command for applying the "sepia" effect
@@ -35,7 +36,7 @@ public class SepiaFunction extends AColorTransform {
    * @throws IOException if invalid input from scanner is read
    */
   @Override
-  public void doFunction(ImageModel model, Scanner scanner) throws IOException {
+  public void doFunction(ImageModelInterface model, Scanner scanner) throws IOException {
     String imageName = scanner.next();//args[1];
     String destImageName = scanner.next();//args[2];
     model.save(applyColorTransform(model.getImageByName(imageName), destImageName));
