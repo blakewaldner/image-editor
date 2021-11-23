@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import hw4.controller.ImageUtil;
 import hw4.model.ImageModel;
 
-public class FileFunctionPanel extends JPanel implements ActionListener {
+public class FileFunctionPanel extends JPanel{
 
   private ImageModel model;
   private JLabel imageLabel;
@@ -27,9 +27,8 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
   private JButton fileSaveButton;
   private ImageGUIView view;
 
-  public FileFunctionPanel(ImageModel model, JLabel imageLabel, JPanel histogramPanel,
-                           ImageGUIView view) {
-    this.model = model;
+  public FileFunctionPanel(JLabel imageLabel, JPanel histogramPanel) {
+    //this.model = model;
     this.imageLabel = imageLabel;
     this.histogramPanel = histogramPanel;
     this.view = view;
@@ -44,7 +43,6 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
 
     fileSaveButton = new JButton("Save a file");
     fileSaveButton.setActionCommand("Save file");
-    fileSaveButton.addActionListener(this);
 
     add(fileOpenButton);
     add(fileSaveButton);
@@ -58,6 +56,7 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
       ImageUtil.writeImage(fchooser.getSelectedFile().getName(), model.getImageByName("image"));
     }
   }
+}
 
   /**
    * Invoked when an action occurs.
@@ -81,18 +80,4 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
     }
   }
 
-  private void openFile() {
-    JFileChooser fchooser = new JFileChooser(".");
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "Images", "jpg", "png", "bmp", "ppm","jpeg");
-    fchooser.setFileFilter(filter);
-    int retvalue = fchooser.showOpenDialog(this);
-    if (retvalue == JFileChooser.APPROVE_OPTION) {
-      File f = fchooser.getSelectedFile();
-      model.save(ImageUtil.readFile(f.getAbsolutePath(), "image"));
-      imageLabel.setIcon(new ImageIcon(
-              ImageUtil.convertToBufferedImage(model.getImageByName("image"))));
-    }
-    histogramPanel.repaint();
-  }
-}
+

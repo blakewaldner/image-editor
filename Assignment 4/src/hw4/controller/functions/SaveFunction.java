@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import hw4.model.ImageModel;
 import hw4.controller.ImageUtil;
+import hw4.model.ImageModelInterface;
 
 /**
  * This class represents the command for "save". It saves
@@ -29,7 +30,7 @@ public class SaveFunction extends ImageFunction {
    * @param scanner inputted arguments
    * @throws IOException if invalid input from scanner is read
    */
-  public void doFunction(ImageModel model, Scanner scanner) throws IOException {
+  public void doFunction(ImageModelInterface model, Scanner scanner) throws IOException {
     String imagePath = scanner.next();//args[1];
     String imageName = scanner.next();//args[2];
     ImageUtil.writeImage(imagePath, model.getImageByName(imageName));

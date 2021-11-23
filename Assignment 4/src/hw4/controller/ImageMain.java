@@ -46,8 +46,10 @@ public class ImageMain {
       }
     } else {
       //default case, no args = run gui
-      ImageController controller = new ImageControllerImpl();
-      controller.startProcess();
+      //ImageController controller = new ImageControllerImpl();
+      ImageControllerGUI controller = new ImageControllerGUI(new ImageModel());
+      GuiView view = new JFrameView();
+      controller.setView(view);
     }
   }
 }

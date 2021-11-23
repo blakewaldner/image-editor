@@ -34,7 +34,7 @@ public class GreyScaleFunction extends AColorTransform {
    * @throws IOException if invalid input from scanner is read
    */
   @Override
-  public void doFunction(ImageModel model, Scanner scanner) throws IOException {
+  public void doFunction(ImageModelInterface model, Scanner scanner) throws IOException {
     String imageName = scanner.next();//args[1];
     String destImageName = scanner.next();//args[2];
     model.save(applyColorTransform(model.getImageByName(imageName), destImageName));
