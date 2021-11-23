@@ -3,7 +3,7 @@ package hw4.controller.functions;
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 
 /**
  * This class represents the command for "brighten". It brighrens a
@@ -29,7 +29,7 @@ public class BrightenFunction extends ImageFunction {
    * @param scanner inputted arguments
    * @throws IOException if invalid input from scanner is read
    */
-  public void doFunction(ImageModel model, Scanner scanner) {
+  public void doFunction(ImageModelInterface model, Scanner scanner) {
     String secondArg = scanner.next();
     int increment = 0;
     if (isNumeric(secondArg)) {

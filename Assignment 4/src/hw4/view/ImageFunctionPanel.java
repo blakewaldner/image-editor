@@ -33,17 +33,31 @@ public class ImageFunctionPanel extends JPanel {
     this.imageLabel = imageLabel;
     this.view = view;
 
+//    for (List<String> button : createButtonMap()) {
+//      String label = button.get(0);
+//      String command = button.get(1);
+//      add(createButton(label, command));
+//    }
+  }
+
+  public void addFeatures(Features a) {
     for (List<String> button : createButtonMap()) {
       String label = button.get(0);
       String command = button.get(1);
-      add(createButton(label, command));
+      add(createButton(label, command, a));
     }
   }
 
-  private JButton createButton(String label, String command) {
+  private JButton createButton(String label, String command, Features a) {
     JButton button = new JButton(label);
     button.setActionCommand(command);
-    button.addActionListener(this);
+    button.addActionListener(evt -> {
+      try {
+        a.transform(evt);
+      } catch (IOException e) {
+        view.renderMessage("Error when transforming");
+      }
+    });
     return button;
   }
 

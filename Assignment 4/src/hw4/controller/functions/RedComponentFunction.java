@@ -3,7 +3,7 @@ package hw4.controller.functions;
 import java.io.IOException;
 import java.util.Scanner;
 
-import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 
 /**
  * This class represents the command for "red-component". It greyscales a

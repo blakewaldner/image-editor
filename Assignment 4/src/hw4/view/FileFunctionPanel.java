@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -31,7 +32,7 @@ public class FileFunctionPanel extends JPanel{
     //this.model = model;
     this.imageLabel = imageLabel;
     this.histogramPanel = histogramPanel;
-    this.view = view;
+    //this.view = view;
 
     setBorder(BorderFactory.createTitledBorder("File functions"));
     setLayout(new GridLayout(1, 2, 10, 10));
@@ -39,7 +40,6 @@ public class FileFunctionPanel extends JPanel{
 
     fileOpenButton = new JButton("Open a file");
     fileOpenButton.setActionCommand("Open file");
-    fileOpenButton.addActionListener(this);
 
     fileSaveButton = new JButton("Save a file");
     fileSaveButton.setActionCommand("Save file");
@@ -48,36 +48,43 @@ public class FileFunctionPanel extends JPanel{
     add(fileSaveButton);
   }
 
-  private void saveFile() throws IOException {
-    JFileChooser fchooser = new JFileChooser(".");
-    fchooser.setSelectedFile(new File("image.png"));
-    int retvalue = fchooser.showSaveDialog(this);
-    if (retvalue == JFileChooser.APPROVE_OPTION) {
-      ImageUtil.writeImage(fchooser.getSelectedFile().getName(), model.getImageByName("image"));
-    }
+  public void addFeatures(Features a) {
+    fileOpenButton.addActionListener(evt -> a.open(this));
+    fileSaveButton.addActionListener(evt -> {
+      try {
+        a.save(this);
+      } catch (IOException e) {
+        view.renderMessage("Error when saving file");
+      }
+    });
   }
 }
 
-  /**
-   * Invoked when an action occurs.
-   *
-   * @param arg0 the event to be processed
-   */
-  @Override
-  public void actionPerformed(ActionEvent arg0) {
-    if (arg0.getActionCommand().equals("Open file")) {
-      openFile();
-    } else if (arg0.getActionCommand().equals("Save file")) {
-      if (model.getImgList().size() != 0) {
-        try {
-          saveFile();
-        } catch (IOException | IllegalArgumentException e) {
-          view.renderMessage("Error saving file");
-        }
-      } else {
-        view.renderMessage("No image currently loaded");
-      }
-    }
-  }
+//  private void saveFile() throws IOException {
+//    JFileChooser fchooser = new JFileChooser(".");
+//    fchooser.setSelectedFile(new File("image.png"));
+//    int retvalue = fchooser.showSaveDialog(this);
+//    if (retvalue == JFileChooser.APPROVE_OPTION) {
+//      ImageUtil.writeImage(fchooser.getSelectedFile().getName(), model.getImageByName("image"));
+//    }
+//  }
+
+
+//  @Override
+//  public void actionPerformed(ActionEvent arg0) {
+//    if (arg0.getActionCommand().equals("Open file")) {
+//      openFile();
+//    } else if (arg0.getActionCommand().equals("Save file")) {
+//      if (model.getImgList().size() != 0) {
+//        try {
+//          saveFile();
+//        } catch (IOException | IllegalArgumentException e) {
+//          view.renderMessage("Error saving file");
+//        }
+//      } else {
+//        view.renderMessage("No image currently loaded");
+//      }
+//    }
+//  }
 
 
