@@ -11,13 +11,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import hw4.controller.ImageUtil;
 import hw4.controller.functions.ImageFunction;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 
+/**
+ * This class represents the GUI JPanel that holds the buttons for
+ * modifying an image.
+ */
 public class ImageFunctionPanel extends JPanel implements ActionListener {
 
   private ArrayList<ImageFunction> functions;
@@ -26,6 +35,13 @@ public class ImageFunctionPanel extends JPanel implements ActionListener {
   private ImageModel model;
   private ImageGUIView view;
 
+  /**
+   * This constructs a new ImageFunctionPanel for the main ImageGUIFrame to hold.
+   * @param model model that holds current image state
+   * @param imageLabel JLabel that is displaying image
+   * @param histogramPanel JPanel that is displaying histogram
+   * @param view view for rendering error messages
+   */
   public ImageFunctionPanel(ImageModel model, JLabel imageLabel, JPanel histogramPanel,
                             ImageGUIView view) {
     setBorder(BorderFactory.createTitledBorder("Image functions"));

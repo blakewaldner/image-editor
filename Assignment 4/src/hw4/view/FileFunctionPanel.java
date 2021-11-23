@@ -18,6 +18,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import hw4.controller.ImageUtil;
 import hw4.model.ImageModel;
 
+/**
+ * This class represents the GUI JPanel that holds the buttons for
+ * opening/saving an image.
+ */
 public class FileFunctionPanel extends JPanel implements ActionListener {
 
   private ImageModel model;
@@ -27,6 +31,13 @@ public class FileFunctionPanel extends JPanel implements ActionListener {
   private JButton fileSaveButton;
   private ImageGUIView view;
 
+  /**
+   * This constructs a new FileFunctionPanel for the main ImageGUIFrame to hold.
+   * @param model model that holds current image state
+   * @param imageLabel JLabel that is displaying image
+   * @param histogramPanel JPanel that is displaying histogram
+   * @param view view for rendering error messages
+   */
   public FileFunctionPanel(ImageModel model, JLabel imageLabel, JPanel histogramPanel,
                            ImageGUIView view) {
     this.model = model;

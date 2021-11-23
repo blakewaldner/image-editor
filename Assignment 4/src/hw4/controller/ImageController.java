@@ -3,7 +3,7 @@ package hw4.controller;
 import java.io.IOException;
 
 /**
- * This represents the functionalityfor the ImageController.
+ * This interface represents the functionality for the ImageController.
  */
 public interface ImageController {
 

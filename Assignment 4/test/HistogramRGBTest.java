@@ -5,8 +5,11 @@ import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Test class for testing the functionality of Histogram class.
+ */
 public class HistogramRGBTest {
   Image image;
   ImageModel model;

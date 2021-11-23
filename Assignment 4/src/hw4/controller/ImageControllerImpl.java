@@ -58,7 +58,8 @@ public class ImageControllerImpl implements ImageController {
    * This function takes in commands to modify the list of Images in ImageModel and reads
    * from in. It displays an error message when the user types in an incorrect command but
    * does not quit when it happens. The controller also initializes ImageView to display
-   * the error messages.
+   * the error messages. If no command line arguments are passed, runs the program in GUI
+   * mode.
    *
    * @throws IOException when the String can not be formatted in ImageView.
    */

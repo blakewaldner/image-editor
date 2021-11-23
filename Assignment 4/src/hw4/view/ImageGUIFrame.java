@@ -11,6 +11,10 @@ import javax.swing.BoxLayout;
 
 import hw4.model.ImageModel;
 
+/**
+ * This class represents the main JFrame that holds all panels for displaying the image
+ * processor's file functions, image functions, current image, and histogram.
+ */
 public class ImageGUIFrame extends JFrame {
 
   private ImageModel model;
@@ -26,6 +30,10 @@ public class ImageGUIFrame extends JFrame {
   private JPanel imageFunctionPanel;
   private JPanel fileFunctionPanel;
 
+  /**
+   * Constructs the window that holds the GUI.
+   * @param view view for rendering error messages
+   */
   public ImageGUIFrame(ImageGUIView view) {
     super();
     setTitle("Image Processor");
