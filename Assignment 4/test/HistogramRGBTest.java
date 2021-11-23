@@ -5,7 +5,7 @@ import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Test class for testing the functionality of Histogram class.

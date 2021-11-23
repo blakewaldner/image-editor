@@ -77,6 +77,12 @@ public class HistogramPanel extends JPanel {
    * This sets the values for the red,green,blue, and intensity arrays based on the name.
    */
   public void setValues() {
+    for(int i = 0; i < red.length; i ++){
+      red[i] = 0;
+      green[i] = 0;
+      blue[i] = 0;
+      intensity[i] = 0;
+    }
     if(image != null) {
       red = redValues();
       blue = blueValues();
@@ -108,8 +114,8 @@ public class HistogramPanel extends JPanel {
   public void paint(Graphics g){
     setValues();
     for(int i = 0; i < red.length - 1; i ++ ){
-      int a = 1000;
-      int b = 1;
+      int a = 5;
+      int b = 5;
       g.setColor(Color.RED);
       g.drawLine(i,red[i]/a,i+1,red[i+1]/a);
 
