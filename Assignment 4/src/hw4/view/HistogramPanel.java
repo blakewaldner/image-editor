@@ -34,6 +34,7 @@ public class HistogramPanel extends JPanel {
   }
 
   private int[] redValues(){
+    int[] red = new int[256];
     for(int i = 0; i <  image.getHeight(); i ++){
       for(int j = 0; j < image.getWidth(); j ++){
         red[image.getPixel(i,j).getRed()]++;
@@ -43,6 +44,7 @@ public class HistogramPanel extends JPanel {
   }
 
   private int[] blueValues(){
+    int[] blue = new int[256];
     for(int i = 0; i <  image.getHeight(); i ++){
       for(int j = 0; j < image.getWidth(); j ++){
         blue[image.getPixel(i,j).getBlue()]++;
@@ -52,6 +54,7 @@ public class HistogramPanel extends JPanel {
   }
 
   private int[] greenValues(){
+    int[] green = new int[256];
     for(int i = 0; i <  image.getHeight(); i ++){
       for(int j = 0; j < image.getWidth(); j ++){
         green[image.getPixel(i,j).getGreen()]++;
@@ -61,6 +64,7 @@ public class HistogramPanel extends JPanel {
   }
 
   private int[] intensityValues(){
+    int[] intensity = new int[256];
     for(int i = 0; i <  image.getHeight(); i ++){
       for(int j = 0; j < image.getWidth(); j ++){
         intensity[(image.getPixel(i,j).getGreen() + image.getPixel(i,j).getRed()
@@ -77,12 +81,12 @@ public class HistogramPanel extends JPanel {
    * This sets the values for the red,green,blue, and intensity arrays based on the name.
    */
   public void setValues() {
-    for(int i = 0; i < red.length; i ++){
-      red[i] = 0;
-      green[i] = 0;
-      blue[i] = 0;
-      intensity[i] = 0;
-    }
+//    for(int i = 0; i < red.length; i ++){
+//      red[i] = 0;
+//      green[i] = 0;
+//      blue[i] = 0;
+//      intensity[i] = 0;
+//    }
     if(image != null) {
       red = redValues();
       blue = blueValues();
