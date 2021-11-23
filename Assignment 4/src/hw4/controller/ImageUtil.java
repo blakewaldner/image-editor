@@ -178,6 +178,11 @@ public class ImageUtil {
     }
   }
 
+  /**
+   * Converts an image object to a BufferedImage object.
+   * @param image image to be converted
+   * @return image in bufferedimage format
+   */
   public static BufferedImage convertToBufferedImage(Image image) {
     int width = image.getWidth();
     int height = image.getHeight();
@@ -190,6 +195,10 @@ public class ImageUtil {
     return img;
   }
 
+  /**
+   * Creates a list of current supported image functions.
+   * @return arraylist containing all image functions available to user
+   */
   public static ArrayList<ImageFunction> createFunctions() {
     ArrayList<ImageFunction> functions = new ArrayList();
     functions.add(new SaveFunction());
