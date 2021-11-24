@@ -93,26 +93,51 @@ public class HistogramPanel extends JPanel {
   }
 
   /**
-   * This returns the red array.
+   * Creates a clone of the values of red histogram array.
+   * Typically, used for test class purposes.
    *
-   * @returns an array.
+   * @returns histogram array of red values
    */
   public int[] getRed() {
     return red.clone();
   }
 
+  /**
+   * Creates a clone of the values of blue histogram array.
+   * Typically, used for test class purposes.
+   *
+   * @returns histogram array of blue values
+   */
   public int[] getBlue() {
     return blue.clone();
   }
 
+  /**
+   * Creates a clone of the values of green histogram array.
+   * Typically, used for test class purposes.
+   *
+   * @returns histogram array of green values
+   */
   public int[] getGreen() {
     return green.clone();
   }
 
+  /**
+   * Creates a clone of the values of intensity histogram array.
+   * Typically, used for test class purposes.
+   *
+   * @returns histogram array of intensity values
+   */
   public int[] getIntensity() {
     return intensity.clone();
   }
 
+  /**
+   * Overrides paint function of panel to paint chart of histogram values.
+   *
+   * @param g graphics object used to paint lines/colors with
+   */
+  @Override
   public void paint(Graphics g) {
     setValues();
     for (int i = 0; i < red.length - 1; i++) {

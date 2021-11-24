@@ -51,10 +51,6 @@ public class ImageControllerImpl implements ImageController {
     this.model = model;
   }
 
-  public ImageControllerImpl() {
-    model = null;
-  }
-
   /**
    * This function takes in commands to modify the list of Images in ImageModel and reads
    * from in. It displays an error message when the user types in an incorrect command but
@@ -89,7 +85,7 @@ public class ImageControllerImpl implements ImageController {
           }
           //valid command, but invalid filepath as argument
           catch (FileNotFoundException e2) {
-            view.renderMessage(e2.getMessage() + "\n");
+            view.renderMessage("File not found at location" + "\n");
           }
         }
         //invalid command, couldn't find
