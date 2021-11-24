@@ -33,7 +33,7 @@ public class ImageFunctionTest {
   public void testValidImageCommands() throws IOException {
 
     ArrayList<String> validCommands = new ArrayList<>();
-    validCommands.add("load res/testing.ppm test");
+    validCommands.add("load res/dog.ppm test");
     validCommands.add("save res/test-saved.ppm test");
     validCommands.add("brighten 10 test test-brighter");
     validCommands.add("darken 10 test test-darker");
@@ -62,7 +62,7 @@ public class ImageFunctionTest {
     functions.add(new BlueComponentFunction());
 
     for (int x = 0; x < functions.size(); x++) {
-      Readable read = new StringReader("load res/testing.ppm test\n" + validCommands.get(x));
+      Readable read = new StringReader("load res/dog.ppm test\n" + validCommands.get(x));
       Appendable append = new StringBuilder();
       ImageController controller = new ImageControllerImpl(read, append);
       controller.startProcess();
@@ -78,12 +78,13 @@ public class ImageFunctionTest {
     Appendable append = new StringBuilder();
     ImageController controller = new ImageControllerImpl(read, append);
     controller.startProcess();
-    assertEquals(append.toString(), "Invalid Arguments\n");
+    assertEquals(append.toString(), "Invalid Arguments: " +
+            "Invalid file name, no file found with given name\n");
   }
 
   @Test
   public void testValidLoad() throws IOException {
-    Readable read = new StringReader("load res/testing.ppm test");
+    Readable read = new StringReader("load res/dog.ppm test");
     Appendable append = new StringBuilder();
     ImageModel model = new ImageModel();
     ImageController controller = new ImageControllerImpl(read, append, model);
@@ -93,7 +94,7 @@ public class ImageFunctionTest {
 
   @Test
   public void testInvalidPathSave() throws IOException {
-    Readable read = new StringReader("load res/testing.ppm test\n" +
+    Readable read = new StringReader("load res/dog.ppm test\n" +
             "save folderdoesntexist/test-saved.ppm test");
     Appendable append = new StringBuilder();
     ImageController controller = new ImageControllerImpl(read, append);
@@ -144,14 +145,14 @@ public class ImageFunctionTest {
       Appendable append = new StringBuilder();
       ImageController controller = new ImageControllerImpl(read, append);
       controller.startProcess();
-      assertEquals(append.toString(), "Invalid Arguments\n");
+      assertEquals(append.toString(), "Invalid Arguments: No image found with given name\n");
     }
 
   }
 
   @Test
   public void testMultipleCommandSameImage() throws IOException {
-    Readable read = new StringReader("load res/testing.ppm test\n" +
+    Readable read = new StringReader("load res/dog.ppm test\n" +
             "horizontal-flip test test\n" +
             "brighten 10 test test\n" +
             "vertical-flip test test\n" +

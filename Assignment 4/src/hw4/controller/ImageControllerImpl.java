@@ -85,7 +85,7 @@ public class ImageControllerImpl implements ImageController {
           }
           //valid command, but invalid filepath as argument
           catch (FileNotFoundException e2) {
-            view.renderMessage(e2.getMessage() + "\n");
+            view.renderMessage("File not found at location" + "\n");
           }
         }
         //invalid command, couldn't find
