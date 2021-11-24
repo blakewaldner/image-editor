@@ -14,13 +14,27 @@ import javax.swing.JButton;
 
 import hw4.controller.Features;
 
+/**
+ * This class represents the GUI JPanel that holds the buttons for
+ * modifying an image.
+ */
 public class ImageFunctionPanel extends JPanel {
+  /**
+   * This constructs a new ImageFunctionPanel for the main ImageGUIFrame to hold.
+   * The panel holds buttons for all the image functions available.
+   */
   public ImageFunctionPanel() {
     setBorder(BorderFactory.createTitledBorder("Image functions"));
     setLayout(new GridLayout(4, 3, 10, 10));
     setPreferredSize(new Dimension(50, 200));
   }
 
+  /**
+   * Adds features to the buttons in the ImageFunctionPanel that adds action listeners
+   * to buttons for them to perform image functions on current image.
+   *
+   * @param features features object holding image operations
+   */
   public void addFeatures(Features features) {
     for (List<String> button : createButtonMap()) {
       String label = button.get(0);

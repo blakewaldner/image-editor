@@ -51,10 +51,6 @@ public class ImageControllerImpl implements ImageController {
     this.model = model;
   }
 
-  public ImageControllerImpl() {
-    model = null;
-  }
-
   /**
    * This function takes in commands to modify the list of Images in ImageModel and reads
    * from in. It displays an error message when the user types in an incorrect command but

@@ -179,6 +179,7 @@ public class ImageUtil {
 
   /**
    * Converts an image object to a BufferedImage object.
+   *
    * @param image image to be converted
    * @return image in bufferedimage format
    */
@@ -196,6 +197,7 @@ public class ImageUtil {
 
   /**
    * Creates a list of current supported image functions.
+   *
    * @return arraylist containing all image functions available to user
    */
   public static ArrayList<ImageFunction> createFunctions() {

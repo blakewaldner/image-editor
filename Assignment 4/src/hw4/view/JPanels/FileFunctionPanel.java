@@ -11,11 +11,19 @@ import javax.swing.JButton;
 
 import hw4.controller.Features;
 
-public class FileFunctionPanel extends JPanel{
+/**
+ * This class represents the GUI JPanel that holds the buttons for
+ * opening/saving an image.
+ */
+public class FileFunctionPanel extends JPanel {
 
   private JButton fileOpenButton;
   private JButton fileSaveButton;
 
+  /**
+   * This constructs a new FileFunctionPanel for the main ImageGUIFrame to hold.
+   * Holds buttons for opening/saving a file.
+   */
   public FileFunctionPanel() {
 
     setBorder(BorderFactory.createTitledBorder("File functions"));
@@ -33,6 +41,12 @@ public class FileFunctionPanel extends JPanel{
     setVisible(true);
   }
 
+  /**
+   * Adds features to the buttons in the FileFunctionPanel that adds action listeners
+   * to buttons for them to perform file functions on current image.
+   *
+   * @param features features object holding file operation functions
+   */
   public void addFeatures(Features features) {
     fileOpenButton.addActionListener(evt -> features.open(this));
     fileSaveButton.addActionListener(evt -> {
