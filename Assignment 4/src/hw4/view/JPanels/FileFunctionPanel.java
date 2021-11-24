@@ -13,8 +13,8 @@ import hw4.controller.Features;
 
 public class FileFunctionPanel extends JPanel{
 
-  private JButton fileOpenButton;
-  private JButton fileSaveButton;
+  protected JButton fileOpenButton;
+  protected JButton fileSaveButton;
 
   public FileFunctionPanel() {
 

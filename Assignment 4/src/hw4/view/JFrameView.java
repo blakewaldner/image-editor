@@ -51,13 +51,13 @@ public class JFrameView extends JFrame implements GuiView {
     imageFunctionPanel = new ImageFunctionPanel();
     fileFunctionPanel = new FileFunctionPanel();
 
-    imagePanel.add(histogramPanel);
     mainPanel.add(fileFunctionPanel);
     mainPanel.add(imageFunctionPanel);
     mainPanel.add(imagePanel);
+    imagePanel.add(histogramPanel);
 
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainPanel.updateUI();
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   }
   @Override

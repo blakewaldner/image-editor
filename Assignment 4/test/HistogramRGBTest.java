@@ -74,7 +74,7 @@ public class HistogramRGBTest {
     assertArrayEquals(a.getBlue(), x);
     assertArrayEquals(a.getGreen(), x);
     assertArrayEquals(a.getIntensity(), x);
-
+    a.setImage(image);
     a.setValues();
 
     x[1] = 2;
@@ -104,6 +104,5 @@ public class HistogramRGBTest {
     x[4] = 0;
     x[5] = 1;
     assertArrayEquals(a.getIntensity(),x);
-
   }
 }

@@ -116,18 +116,19 @@ public class HistogramPanel extends JPanel {
   public void paint(Graphics g) {
     setValues();
     for (int i = 0; i < red.length - 1; i++) {
-      int a = 5;
+      int a = 20;
+      int b = 2;
       g.setColor(Color.RED);
-      g.drawLine(i, red[i] / a, i + 1, red[i + 1] / a);
+      g.drawLine(i*b, red[i] / a, i*b + b, red[i + 1] / a);
 
       g.setColor(Color.GREEN);
-      g.drawLine(i, green[i] / a, i + 1, green[i + 1] / a);
+      g.drawLine(i*b, green[i] / a, i*b + b, green[i + 1] / a);
 
       g.setColor(Color.BLUE);
-      g.drawLine(i, blue[i] / a, i + 1, blue[i + 1] / a);
+      g.drawLine(i*b, blue[i] / a, i*b + b, blue[i + 1] / a);
 
       g.setColor(Color.BLACK);
-      g.drawLine(i, intensity[i] / a, i + 1, intensity[i + 1] / a);
+      g.drawLine(i*b, intensity[i] / a, i*b + b, intensity[i + 1] / a);
     }
   }
 

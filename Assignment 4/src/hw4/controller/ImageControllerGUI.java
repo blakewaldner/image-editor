@@ -17,7 +17,7 @@ import hw4.controller.functions.ImageFunction;
 import hw4.model.ImageModelInterface;
 import hw4.view.GuiView;
 
-public class ImageControllerGUI implements Features, ImageController {
+public class ImageControllerGUI implements Features {
   private ImageModelInterface model;
   private GuiView view;
   private ArrayList<ImageFunction> functions;
@@ -30,7 +30,9 @@ public class ImageControllerGUI implements Features, ImageController {
       try {
         view.renderMessage("Error loading model/view");
       }
-      catch (IOException e) {}
+      catch (IOException e) {
+
+      }
     }
   }
 
