@@ -1,14 +1,23 @@
 package hw4.view;
 
-import java.awt.*;
-import java.io.IOException;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-import hw4.controller.ImageUtil;
+import hw4.controller.Features;
 import hw4.model.Image;
+import hw4.view.JPanels.FileFunctionPanel;
+import hw4.view.JPanels.HistogramPanel;
+import hw4.view.JPanels.ImageFunctionPanel;
 
-public class JFrameView extends JFrame implements GuiView{
+public class JFrameView extends JFrame implements GuiView {
   private JPanel mainPanel;
   private JPanel imagePanel;
   private HistogramPanel histogramPanel;
@@ -39,8 +48,8 @@ public class JFrameView extends JFrame implements GuiView{
     imagePanel.add(imageScrollPane);
 
     histogramPanel = new HistogramPanel();
-    imageFunctionPanel = new ImageFunctionPanel( imageLabel, histogramPanel);
-    fileFunctionPanel = new FileFunctionPanel( imageLabel, histogramPanel);
+    imageFunctionPanel = new ImageFunctionPanel();
+    fileFunctionPanel = new FileFunctionPanel();
 
     imagePanel.add(histogramPanel);
     mainPanel.add(fileFunctionPanel);
@@ -48,23 +57,23 @@ public class JFrameView extends JFrame implements GuiView{
     mainPanel.add(imagePanel);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    mainPanel.updateUI();
     setVisible(true);
   }
   @Override
-  public void addFeatures(Features a) {
-    imageFunctionPanel.addFeatures(a);
-    fileFunctionPanel.addFeatures(a);
+  public void addFeatures(Features features) {
+    imageFunctionPanel.addFeatures(features);
+    fileFunctionPanel.addFeatures(features);
   }
 
   @Override
-  public void setImageIcon(ImageIcon b) {
-    imageLabel.setIcon(b);
+  public void setImageIcon(ImageIcon icon) {
+    imageLabel.setIcon(icon);
   }
 
   @Override
   public void repaintHistogram() {
     histogramPanel.repaint();
-    histogramPanel.revalidate();
   }
 
   public void setImage(Image image){
@@ -72,7 +81,7 @@ public class JFrameView extends JFrame implements GuiView{
   }
 
   @Override
-  public void renderMessage(String message) throws IOException {
+  public void renderMessage(String message) {
     JOptionPane.showMessageDialog(this, message);
   }
 }

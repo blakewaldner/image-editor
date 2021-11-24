@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-import hw4.view.HistogramPanel;
+import hw4.view.JPanels.HistogramPanel;
 import hw4.model.Image;
 import hw4.model.ImageModel;
 import hw4.model.Pixel;
