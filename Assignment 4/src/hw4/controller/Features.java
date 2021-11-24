@@ -1,9 +1,9 @@
-package hw4.view;
+package hw4.controller;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public interface Features {
   void save(JPanel panel) throws IOException;

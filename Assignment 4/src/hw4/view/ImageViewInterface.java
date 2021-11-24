@@ -3,7 +3,7 @@ package hw4.view;
 import java.io.IOException;
 
 /**
- * This interface represents the functionality for ImageView.
+ * This interface represents the functionality for ImageTextView.
  */
 public interface ImageViewInterface {
   /**

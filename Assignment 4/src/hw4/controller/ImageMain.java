@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import hw4.model.ImageModel;
+import hw4.model.ImageModelInterface;
 import hw4.view.GuiView;
 import hw4.view.JFrameView;
 
@@ -50,10 +51,10 @@ public class ImageMain {
       }
     } else {
       //default case, no args = run gui
-      //ImageController controller = new ImageControllerImpl();
-      ImageControllerGUI controller = new ImageControllerGUI(new ImageModel());
+      ImageModelInterface model = new ImageModel();
       GuiView view = new JFrameView();
-      controller.setView(view);
+      ImageControllerGUI controller = new ImageControllerGUI(model, view);
+      controller.startProcess();
     }
   }
 }

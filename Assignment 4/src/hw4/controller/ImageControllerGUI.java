@@ -7,49 +7,61 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import hw4.controller.functions.ImageFunction;
 import hw4.model.ImageModelInterface;
-import hw4.view.Features;
 import hw4.view.GuiView;
-import hw4.view.ImageGUIView;
 
 public class ImageControllerGUI implements Features, ImageController {
   private ImageModelInterface model;
   private GuiView view;
   private ArrayList<ImageFunction> functions;
 
-  public void setView(GuiView a){
-    view = a;
-    view.addFeatures(this);
+  public ImageControllerGUI(ImageModelInterface model, GuiView view) {
+    if (model != null && view != null) {
+      this.model = model;
+      this.view = view;
+    } else {
+      try {
+        view.renderMessage("Error loading model/view");
+      }
+      catch (IOException e) {}
+    }
   }
 
-  public ImageControllerGUI(ImageModelInterface a){
-      model = a;
-      functions = ImageUtil.createFunctions();
-  }
-
-  public void startProcess() throws IOException {
-    new ImageGUIView();
+  public void startProcess() {
+    this.functions = ImageUtil.createFunctions();
+    this.view.addFeatures(this);
   }
 
   @Override
   public void open(JPanel panel) {
-      JFileChooser fchooser = new JFileChooser(".");
-      FileNameExtensionFilter filter = new FileNameExtensionFilter(
-              "Images", "jpg", "png", "bmp", "ppm","jpeg");
-      fchooser.setFileFilter(filter);
-      int retvalue = fchooser.showOpenDialog(panel);
-      if (retvalue == JFileChooser.APPROVE_OPTION) {
-        File f = fchooser.getSelectedFile();
+    JFileChooser fchooser = new JFileChooser(".");
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "Images", "jpg", "png", "bmp", "ppm", "jpeg");
+    fchooser.setFileFilter(filter);
+    int retvalue = fchooser.showOpenDialog(panel);
+    if (retvalue == JFileChooser.APPROVE_OPTION) {
+      File f = fchooser.getSelectedFile();
+      try {
         model.save(ImageUtil.readFile(f.getAbsolutePath(), "image"));
-        view.setImageIcon(new ImageIcon(
-                ImageUtil.convertToBufferedImage(model.getImageByName("image"))));
-        view.setImage(model.getImageByName("image"));
       }
-      view.repaintHistogram();
+      catch (NullPointerException e) {
+        try {
+          view.renderMessage("Error loading file");
+        }
+        catch (IOException e2) {}
+      }
+      view.setImageIcon(new ImageIcon(
+              ImageUtil.convertToBufferedImage(model.getImageByName("image"))));
+      view.setImage(model.getImageByName("image"));
+    }
+    view.repaintHistogram();
   }
 
   @Override
@@ -90,6 +102,4 @@ public class ImageControllerGUI implements Features, ImageController {
       view.renderMessage("No image currently loaded");
     }
   }
-
-
 }
